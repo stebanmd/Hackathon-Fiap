@@ -1,5 +1,6 @@
 ﻿using Ardalis.ListStartupServices;
 using Hackathon.Fiap.Infrastructure.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace Hackathon.Fiap.Web.Configurations;
 
@@ -11,6 +12,7 @@ public static class MiddlewareConfig
         {
             app.UseDeveloperExceptionPage();
             app.UseShowAllServicesMiddleware(); // see https://github.com/ardalis/AspNetCoreStartupServices
+            await SeedDatabase(app);
         }
         else
         {
@@ -18,13 +20,11 @@ public static class MiddlewareConfig
             app.UseHsts();
         }
 
-        app.UseFastEndpoints()
+        app
+            .UseFastEndpoints()
             .UseSwaggerGen(); // Includes AddFileServer and static files middleware
 
         app.UseHttpsRedirection(); // Note this will drop Authorization headers
-
-        await SeedDatabase(app);
-
         return app;
     }
 
@@ -36,14 +36,14 @@ public static class MiddlewareConfig
         try
         {
             var context = services.GetRequiredService<AppDbContext>();
-            //          context.Database.Migrate();
-            context.Database.EnsureCreated();
+
+            await context.Database.MigrateAsync();
             await SeedData.InitializeAsync(context);
         }
         catch (Exception ex)
         {
             var logger = services.GetRequiredService<ILogger<Program>>();
-            logger.LogError(ex, "An error occurred seeding the DB. {exceptionMessage}", ex.Message);
+            logger.LogError(ex, "An error occurred seeding the DB. {ExceptionMessage}", ex.Message);
         }
     }
 }
