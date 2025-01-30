@@ -23,7 +23,6 @@ public static class InfrastructureServiceExtensions
             services.AddScoped<IListContributorsQueryService, ListContributorsQueryService>();
         }
 
-
         services.AddScoped<IDeleteContributorService, DeleteContributorService>();
 
         services
