@@ -1,4 +1,6 @@
-﻿namespace Hackathon.Fiap.Web.Configurations;
+﻿using Serilog;
+
+namespace Hackathon.Fiap.Web.Configurations;
 
 public static class LoggerConfigs
 {
