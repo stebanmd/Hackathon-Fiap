@@ -27,7 +27,9 @@ builder.AddServiceDefaults();
 
 var app = builder.Build();
 
+
 await app.UseAppMiddlewareAndSeedDatabase();
+app.MapDefaultEndpoints();
 
 await app.RunAsync();
 
