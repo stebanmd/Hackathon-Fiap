@@ -2,7 +2,6 @@
   <Sdk Name="Microsoft.Build.CentralPackageVersions" Version="2.1.3" />
 
   <ItemGroup>
-    <PackageReference Include="Ardalis.SharedKernel" />
     <PackageReference Include="Ardalis.Specification.EntityFrameworkCore" />
     <PackageReference Include="Azure.Identity" />
     <PackageReference Include="MailKit" />
