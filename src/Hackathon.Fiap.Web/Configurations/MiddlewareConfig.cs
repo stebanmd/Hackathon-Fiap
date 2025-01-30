@@ -12,7 +12,7 @@ public static class MiddlewareConfig
         {
             app.UseDeveloperExceptionPage();
             app.UseShowAllServicesMiddleware(); // see https://github.com/ardalis/AspNetCoreStartupServices
-            await SeedDatabase(app);
+            await ApplyMigrationsAndSeedDatabase(app);
         }
         else
         {
@@ -28,7 +28,7 @@ public static class MiddlewareConfig
         return app;
     }
 
-    static async Task SeedDatabase(WebApplication app)
+    static async Task ApplyMigrationsAndSeedDatabase(WebApplication app)
     {
         using var scope = app.Services.CreateScope();
         var services = scope.ServiceProvider;

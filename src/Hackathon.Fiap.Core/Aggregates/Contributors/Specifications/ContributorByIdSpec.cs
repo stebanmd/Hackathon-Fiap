@@ -1,4 +1,4 @@
-﻿namespace Hackathon.Fiap.Core.ContributorAggregate.Specifications;
+﻿namespace Hackathon.Fiap.Core.Aggregates.Contributors.Specifications;
 
 public class ContributorByIdSpec : Specification<Contributor>
 {

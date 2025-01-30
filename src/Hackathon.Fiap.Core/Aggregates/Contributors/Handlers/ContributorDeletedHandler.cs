@@ -1,7 +1,7 @@
-﻿using Hackathon.Fiap.Core.ContributorAggregate.Events;
+﻿using Hackathon.Fiap.Core.Aggregates.Contributors.Events;
 using Hackathon.Fiap.Core.Interfaces;
 
-namespace Hackathon.Fiap.Core.ContributorAggregate.Handlers;
+namespace Hackathon.Fiap.Core.Aggregates.Contributors.Handlers;
 
 /// <summary>
 /// NOTE: Internal because ContributorDeleted is also marked as internal.

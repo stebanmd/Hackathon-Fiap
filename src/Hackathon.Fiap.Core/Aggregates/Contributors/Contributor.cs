@@ -1,6 +1,4 @@
-﻿using Hackathon.Fiap.Core.Abstractions;
-
-namespace Hackathon.Fiap.Core.ContributorAggregate;
+﻿namespace Hackathon.Fiap.Core.Aggregates.Contributors;
 
 public class Contributor(string name) : EntityBase, IAggregateRoot
 {
@@ -23,6 +21,6 @@ public class PhoneNumber(string countryCode, string number, string? extension) :
     {
         yield return CountryCode;
         yield return Number;
-        yield return Extension ?? String.Empty;
+        yield return Extension ?? string.Empty;
     }
 }

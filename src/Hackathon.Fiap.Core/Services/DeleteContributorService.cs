@@ -1,6 +1,5 @@
-﻿using Hackathon.Fiap.Core.Abstractions;
-using Hackathon.Fiap.Core.ContributorAggregate;
-using Hackathon.Fiap.Core.ContributorAggregate.Events;
+﻿using Hackathon.Fiap.Core.Aggregates.Contributors;
+using Hackathon.Fiap.Core.Aggregates.Contributors.Events;
 using Hackathon.Fiap.Core.Interfaces;
 
 namespace Hackathon.Fiap.Core.Services;

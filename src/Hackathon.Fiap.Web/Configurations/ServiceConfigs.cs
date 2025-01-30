@@ -24,6 +24,4 @@ public static class ServiceConfigs
         logger.LogInformation("{Project} services registered", "Mediatr and Email Sender");
         return services;
     }
-
-
 }

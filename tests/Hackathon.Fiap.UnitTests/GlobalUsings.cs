@@ -1,7 +1,7 @@
 ﻿global using System.Runtime.CompilerServices;
 global using FluentAssertions;
 global using Hackathon.Fiap.Core.Abstractions;
-global using Hackathon.Fiap.Core.ContributorAggregate;
+global using Hackathon.Fiap.Core.Aggregates.Contributors;
 global using Hackathon.Fiap.UseCases.Contributors.Create;
 global using MediatR;
 global using Microsoft.Extensions.Logging;

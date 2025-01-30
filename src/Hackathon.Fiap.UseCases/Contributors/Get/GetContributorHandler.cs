@@ -1,5 +1,5 @@
-﻿using Hackathon.Fiap.Core.ContributorAggregate;
-using Hackathon.Fiap.Core.ContributorAggregate.Specifications;
+﻿using Hackathon.Fiap.Core.Aggregates.Contributors;
+using Hackathon.Fiap.Core.Aggregates.Contributors.Specifications;
 
 namespace Hackathon.Fiap.UseCases.Contributors.Get;
 

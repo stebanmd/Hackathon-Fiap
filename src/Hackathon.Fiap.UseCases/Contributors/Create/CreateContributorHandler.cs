@@ -1,4 +1,4 @@
-﻿using Hackathon.Fiap.Core.ContributorAggregate;
+﻿using Hackathon.Fiap.Core.Aggregates.Contributors;
 
 namespace Hackathon.Fiap.UseCases.Contributors.Create;
 

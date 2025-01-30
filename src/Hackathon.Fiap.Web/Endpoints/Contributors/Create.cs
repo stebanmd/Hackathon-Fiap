@@ -13,7 +13,8 @@ public class Create(IMediator _mediator) : Endpoint<CreateContributorRequest, Cr
     public override void Configure()
     {
         Post(CreateContributorRequest.Route);
-        AllowAnonymous();
+        Roles("Admin");
+
         Summary(s =>
         {
             s.ExampleRequest = new CreateContributorRequest { Name = "Contributor Name" };

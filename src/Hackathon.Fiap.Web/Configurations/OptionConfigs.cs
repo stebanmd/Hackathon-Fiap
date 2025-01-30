@@ -5,18 +5,20 @@ namespace Hackathon.Fiap.Web.Configurations;
 
 public static class OptionConfigs
 {
-    public static IServiceCollection AddOptionConfigs(this IServiceCollection services,
-                                                      IConfiguration configuration,
-                                                      Microsoft.Extensions.Logging.ILogger logger,
-                                                      WebApplicationBuilder builder)
+    public static IServiceCollection AddOptionConfigs(
+        this IServiceCollection services,
+        IConfiguration configuration,
+        Microsoft.Extensions.Logging.ILogger logger,
+        WebApplicationBuilder builder)
     {
-        services.Configure<MailserverConfiguration>(configuration.GetSection("Mailserver"))
-        // Configure Web Behavior
-        .Configure<CookiePolicyOptions>(options =>
-        {
-            options.CheckConsentNeeded = context => true;
-            options.MinimumSameSitePolicy = SameSiteMode.None;
-        });
+        services
+            .Configure<MailserverConfiguration>(configuration.GetSection("Mailserver"))
+            .Configure<CookiePolicyOptions>(options =>
+            {
+                // Configure Web Behavior
+                options.CheckConsentNeeded = context => true;
+                options.MinimumSameSitePolicy = SameSiteMode.None;
+            });
 
         if (builder.Environment.IsDevelopment())
         {

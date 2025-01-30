@@ -1,4 +1,4 @@
-﻿using Hackathon.Fiap.Core.ContributorAggregate;
+﻿using Hackathon.Fiap.Core.Aggregates.Contributors;
 using Hackathon.Fiap.Infrastructure.Data;
 
 namespace Hackathon.Fiap.IntegrationTests.Data;

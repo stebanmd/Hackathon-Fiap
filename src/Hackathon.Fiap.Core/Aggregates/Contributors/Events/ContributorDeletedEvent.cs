@@ -1,6 +1,4 @@
-﻿using Hackathon.Fiap.Core.Abstractions;
-
-namespace Hackathon.Fiap.Core.ContributorAggregate.Events;
+﻿namespace Hackathon.Fiap.Core.Aggregates.Contributors.Events;
 
 /// <summary>
 /// A domain event that is dispatched whenever a contributor is deleted.

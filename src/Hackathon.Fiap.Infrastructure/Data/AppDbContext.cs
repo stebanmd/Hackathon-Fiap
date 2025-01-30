@@ -1,18 +1,20 @@
 ﻿using Hackathon.Fiap.Core.Abstractions;
-using Hackathon.Fiap.Core.ContributorAggregate;
+using Hackathon.Fiap.Core.Aggregates.Contributors;
+using Hackathon.Fiap.Core.Aggregates.Users;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace Hackathon.Fiap.Infrastructure.Data;
 
-public class AppDbContext(DbContextOptions<AppDbContext> options, IDomainEventDispatcher? dispatcher) : DbContext(options)
+public class AppDbContext(DbContextOptions<AppDbContext> options, IDomainEventDispatcher? dispatcher) : IdentityDbContext<ApplicationUser>(options)
 {
     private readonly IDomainEventDispatcher? _dispatcher = dispatcher;
 
     public DbSet<Contributor> Contributors => Set<Contributor>();
 
-    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    protected override void OnModelCreating(ModelBuilder builder)
     {
-        base.OnModelCreating(modelBuilder);
-        modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+        base.OnModelCreating(builder);
+        builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
     }
 
     public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())

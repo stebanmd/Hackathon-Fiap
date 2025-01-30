@@ -1,6 +1,6 @@
 ﻿using System.Reflection;
 using Hackathon.Fiap.Core.Abstractions;
-using Hackathon.Fiap.Core.ContributorAggregate;
+using Hackathon.Fiap.Core.Aggregates.Contributors;
 using Hackathon.Fiap.UseCases.Contributors.Create;
 
 namespace Hackathon.Fiap.Web.Configurations;

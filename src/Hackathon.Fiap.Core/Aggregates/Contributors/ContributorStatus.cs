@@ -1,4 +1,4 @@
-﻿namespace Hackathon.Fiap.Core.ContributorAggregate;
+﻿namespace Hackathon.Fiap.Core.Aggregates.Contributors;
 
 public class ContributorStatus : SmartEnum<ContributorStatus>
 {
