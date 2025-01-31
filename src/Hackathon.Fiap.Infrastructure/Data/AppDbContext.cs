@@ -1,5 +1,8 @@
 ﻿using Hackathon.Fiap.Core.Abstractions;
+using Hackathon.Fiap.Core.Aggregates.Appointments;
 using Hackathon.Fiap.Core.Aggregates.Contributors;
+using Hackathon.Fiap.Core.Aggregates.Doctors;
+using Hackathon.Fiap.Core.Aggregates.Patients;
 using Hackathon.Fiap.Core.Aggregates.Users;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
@@ -10,6 +13,10 @@ public class AppDbContext(DbContextOptions<AppDbContext> options, IDomainEventDi
     private readonly IDomainEventDispatcher? _dispatcher = dispatcher;
 
     public DbSet<Contributor> Contributors => Set<Contributor>();
+    public DbSet<Doctor> Doctors => Set<Doctor>();
+    public DbSet<Patient> Patients => Set<Patient>();
+    public DbSet<Appointment> Appointments => Set<Appointment>();
+    public DbSet<Schedule> Schedules => Set<Schedule>();
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
