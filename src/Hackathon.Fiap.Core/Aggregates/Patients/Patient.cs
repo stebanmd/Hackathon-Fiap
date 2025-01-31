@@ -2,22 +2,21 @@
 
 namespace Hackathon.Fiap.Core.Aggregates.Patients;
 
-public class Patient : EntityBase, IAggregateRoot
+public class Patient(string name, string cpf) : EntityBase, IAggregateRoot
 {
-    public string Name { get; private set; }
-    public string Cpf { get; private set; }
+    public string Name { get; private set; } = name;
+    public string Cpf { get; private set; } = cpf;
 
-    public string UserId { get; init; }
+    public string UserId { get; set; } = default!;
     public ApplicationUser User { get; private set; } = default!;
-
-    public Patient(string name, string cpf)
-    {
-        Name = name;
-        Cpf = cpf;
-    }
 
     public void UpdateName(string newName)
     {
         Name = newName;
+    }
+
+    public void SetUser(ApplicationUser user)
+    {
+        User = user;
     }
 }

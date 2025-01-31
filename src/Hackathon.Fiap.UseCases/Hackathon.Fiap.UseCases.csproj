@@ -1,8 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
-    <PackageReference Include="Ardalis.Result" />
-    <PackageReference Include="MediatR" />
+      <PackageReference Include="Ardalis.Result" />
+      <PackageReference Include="Microsoft.Extensions.Identity.Stores" />
+      <PackageReference Include="MediatR" />
   </ItemGroup>
 
   <ItemGroup>

@@ -1,5 +1,6 @@
 ﻿using Ardalis.ListStartupServices;
 using Hackathon.Fiap.Infrastructure.Data;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace Hackathon.Fiap.Web.Configurations;
@@ -20,6 +21,7 @@ public static class MiddlewareConfig
             app.UseHsts();
         }
 
+        await SeedIdentityData(app);
         app
             .UseFastEndpoints()
             .UseSwaggerGen(); // Includes AddFileServer and static files middleware
@@ -44,6 +46,20 @@ public static class MiddlewareConfig
         {
             var logger = services.GetRequiredService<ILogger<Program>>();
             logger.LogError(ex, "An error occurred seeding the DB. {ExceptionMessage}", ex.Message);
+        }
+    }
+
+    static async Task SeedIdentityData(WebApplication app)
+    {
+        using var scope = app.Services.CreateScope();
+        var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+
+        var roleExist = await roleManager.RoleExistsAsync(ApplicationRoles.Admin);
+        if (!roleExist)
+        {
+            await roleManager.CreateAsync(new IdentityRole(ApplicationRoles.Admin));
+            await roleManager.CreateAsync(new IdentityRole(ApplicationRoles.Doctor));
+            await roleManager.CreateAsync(new IdentityRole(ApplicationRoles.Patient));
         }
     }
 }
