@@ -30,7 +30,7 @@ public class Register(IMediator mediator) : Endpoint<RegisterPatientRequest>
                 "patient@email.com",
                 "str0ngP@ssword"
             )
-            {  ConfirmPassord = "str0ngP@ssword" };
+            { ConfirmPassword = "str0ngP@ssword" };
         });
     }
 
