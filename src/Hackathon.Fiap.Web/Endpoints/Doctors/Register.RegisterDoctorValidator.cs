@@ -1,11 +1,11 @@
 ﻿using FluentValidation;
 using Hackathon.Fiap.Infrastructure.Data.Config;
 
-namespace Hackathon.Fiap.Web.Endpoints.Patients;
+namespace Hackathon.Fiap.Web.Endpoints.Doctors;
 
-public class RegisterPatientValidator : Validator<RegisterPatientRequest>
+public class RegisterDoctorValidator : Validator<RegisterDoctorRequest>
 {
-    public RegisterPatientValidator()
+    public RegisterDoctorValidator()
     {
         RuleFor(x => x.Name)
             .NotEmpty()
@@ -15,16 +15,20 @@ public class RegisterPatientValidator : Validator<RegisterPatientRequest>
             .NotEmpty()
             .MaximumLength(DataSchemaConstants.DEFAULT_CPF_LENGTH)
             .Matches(@"^[\d]{11}$");
-        
+
+        RuleFor(x => x.Crm)
+            .NotEmpty()
+            .Matches(@"^[\d]{6}\/[A-Z]{2}$");
+
         RuleFor(x => x.Email)
             .NotEmpty()
             .Matches("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$")
             .WithMessage("Invalid email format.");
-        
+
         RuleFor(x => x.Password)
             .NotEmpty()
             .MinimumLength(6);
-        
+
         RuleFor(x => x.ConfirmPassword)
             .Equal(x => x.Password);
     }
