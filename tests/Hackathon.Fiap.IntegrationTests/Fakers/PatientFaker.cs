@@ -1,9 +1,9 @@
-﻿using Bogus;
+﻿using AutoBogus;
 using Bogus.Extensions.Brazil;
 using Hackathon.Fiap.Core.Aggregates.Patients;
 
 namespace Hackathon.Fiap.IntegrationTests.Fakers;
-public class PatientFaker : Faker<Patient>
+public class PatientFaker : AutoFaker<Patient>
 {
     public PatientFaker()
     {
