@@ -3,5 +3,5 @@
 public record RegisterPatientRequest(string Name, string Cpf, string Email, string Password)
 {
     public const string Route = "/patients/register";
-    public string? ConfirmPassord { get; set; }
+    public string? ConfirmPassword { get; set; }
 }
