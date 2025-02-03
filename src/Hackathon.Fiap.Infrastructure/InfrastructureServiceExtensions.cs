@@ -1,9 +1,11 @@
 ﻿using Hackathon.Fiap.Core.Abstractions;
 using Hackathon.Fiap.Core.Interfaces;
 using Hackathon.Fiap.Core.Services;
+using Hackathon.Fiap.Infrastructure.Authorization;
 using Hackathon.Fiap.Infrastructure.Data;
 using Hackathon.Fiap.Infrastructure.Data.Queries;
 using Hackathon.Fiap.UseCases.Contributors.List;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Hackathon.Fiap.Infrastructure;
 
@@ -28,6 +30,8 @@ public static class InfrastructureServiceExtensions
         services
             .AddScoped(typeof(IRepository<>), typeof(EfRepository<>))
             .AddScoped(typeof(IReadRepository<>), typeof(EfRepository<>));
+
+        services.AddScoped<IAuthorizationHandler, PatientMustBeDataOwnerHandler>();
 
         logger.LogInformation("{Project} services registered", "Infrastructure");
         return services;

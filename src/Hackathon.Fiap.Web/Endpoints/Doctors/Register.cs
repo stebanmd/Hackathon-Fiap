@@ -25,12 +25,12 @@ public partial class Register(IMediator mediator) : Endpoint<RegisterDoctorReque
             x.ExampleRequest = new RegisterDoctorRequest
             (
                 "Dr. John Doe",
-                "12345678900",
+                "12345678909",
                 "123456/RS",
                 "doctor@email.com",
-                "<strong-password>"
+                "str0ngP@ssword"
             )
-            { ConfirmPassword = "<strong-password>" };
+            { ConfirmPassword = "str0ngP@ssword" };
         });
     }
 
