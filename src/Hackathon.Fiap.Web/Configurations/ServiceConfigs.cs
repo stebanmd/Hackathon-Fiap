@@ -1,6 +1,7 @@
 ﻿using Hackathon.Fiap.Core.Interfaces;
 using Hackathon.Fiap.Infrastructure;
 using Hackathon.Fiap.Infrastructure.Email;
+using Hackathon.Fiap.Web.Commons.Validators;
 
 namespace Hackathon.Fiap.Web.Configurations;
 
@@ -20,6 +21,8 @@ public static class ServiceConfigs
         {
             services.AddScoped<IEmailSender, MimeKitEmailSender>();
         }
+
+        builder.Services.AddScoped<PasswordValidator>();
 
         logger.LogInformation("{Project} services registered", "Mediatr and Email Sender");
         return services;
