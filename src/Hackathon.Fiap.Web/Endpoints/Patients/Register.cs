@@ -26,7 +26,7 @@ public class Register(IMediator mediator) : Endpoint<RegisterPatientRequest>
             x.ExampleRequest = new RegisterPatientRequest
             (
                 "Patient name",
-                "12345678900",
+                "12345678909",
                 "patient@email.com",
                 "str0ngP@ssword"
             )
