@@ -10,6 +10,7 @@
     <PackageVersion Include="Ardalis.Specification.EntityFrameworkCore" Version="8.0.0" />
     <PackageVersion Include="Aspire.Hosting.SqlServer" Version="9.0.0" />
     <PackageVersion Include="Azure.Identity" Version="1.13.1" />
+    <PackageVersion Include="Bogus" Version="35.6.1" />
     <PackageVersion Include="coverlet.collector" Version="6.0.2" />
     <PackageVersion Include="FastEndpoints" Version="5.31.0" />
     <PackageVersion Include="FastEndpoints.ApiExplorer" Version="2.2.0" />
