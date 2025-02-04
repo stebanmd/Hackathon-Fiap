@@ -12,6 +12,9 @@ public class Doctor(string name, string cpf, string crm) : EntityBase, IAggregat
     public string UserId { get; set; } = default!;
     public ApplicationUser User { get; private set; } = default!;
 
+    public int? SpecialtyId { get; set; }
+    public Specialty? Specialty { get; private set; }
+
     public List<Schedule> Schedules { get; private set; } = [];
 
     public void AddSchedule(Schedule schedule)
@@ -33,5 +36,11 @@ public class Doctor(string name, string cpf, string crm) : EntityBase, IAggregat
     public void SetUser(ApplicationUser user)
     {
         User = user;
+    }
+
+    public void SetSpecialty(Specialty? specialty)
+    {
+        SpecialtyId = specialty?.Id;
+        Specialty = specialty;
     }
 }

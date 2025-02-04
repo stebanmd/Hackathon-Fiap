@@ -27,6 +27,10 @@ public class RegisterDoctorValidator : Validator<RegisterDoctorRequest>
 
         RuleFor(x => x.ConfirmPassword)
             .Equal(x => x.Password);
+
+        RuleFor(x => x.SpecialtyId)
+            .GreaterThan(0)
+            .When(id => id is not null);
     }
 
     public override Task<ValidationResult> ValidateAsync(FluentValidation.ValidationContext<RegisterDoctorRequest> context, CancellationToken cancellation = default)

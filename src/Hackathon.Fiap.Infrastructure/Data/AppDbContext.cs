@@ -17,6 +17,7 @@ public class AppDbContext(DbContextOptions<AppDbContext> options, IDomainEventDi
     public DbSet<Patient> Patients => Set<Patient>();
     public DbSet<Appointment> Appointments => Set<Appointment>();
     public DbSet<Schedule> Schedules => Set<Schedule>();
+    public DbSet<Specialty> Specialties => Set<Specialty>();
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
