@@ -1,4 +1,5 @@
-﻿using Hackathon.Fiap.UseCases.Contributors.Create;
+﻿using Hackathon.Fiap.UseCases;
+using Hackathon.Fiap.UseCases.Contributors.Create;
 
 namespace Hackathon.Fiap.Web.Endpoints.Contributors;
 

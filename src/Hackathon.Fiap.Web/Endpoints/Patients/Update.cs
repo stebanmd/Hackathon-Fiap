@@ -1,5 +1,6 @@
 ﻿using Ardalis.Result.AspNetCore;
 using Hackathon.Fiap.Infrastructure.Authorization;
+using Hackathon.Fiap.UseCases;
 using Hackathon.Fiap.UseCases.Patients.Update;
 using Microsoft.AspNetCore.Authorization;
 

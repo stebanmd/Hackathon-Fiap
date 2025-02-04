@@ -1,5 +1,6 @@
 ﻿using Ardalis.ListStartupServices;
 using Hackathon.Fiap.Infrastructure.Data;
+using Hackathon.Fiap.UseCases;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 

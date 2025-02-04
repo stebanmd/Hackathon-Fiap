@@ -2,7 +2,7 @@
 using Hackathon.Fiap.Core.Abstractions;
 using Hackathon.Fiap.Core.Aggregates.Patients;
 using Hackathon.Fiap.Core.Aggregates.Patients.Specifications;
-using Hackathon.Fiap.Web;
+using Hackathon.Fiap.UseCases;
 using Microsoft.AspNetCore.Authorization;
 
 namespace Hackathon.Fiap.Infrastructure.Authorization;
