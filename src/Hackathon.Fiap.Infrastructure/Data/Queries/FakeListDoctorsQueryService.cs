@@ -9,8 +9,8 @@ public class FakeListDoctorsQueryService : IListDoctorsQueryService
     {
         IEnumerable<DoctorDto> result =
         [
-            new DoctorDto(1, "Fake Doctor 1", "123.324.523-51", "123456789"),
-            new DoctorDto(2, "Fake Doctor 2", "986.324.523-51", "123456789")
+            new DoctorDto(1, "Fake Doctor 1", "12332452351", "123456789"),
+            new DoctorDto(2, "Fake Doctor 2", "98632452351", "123456789")
         ];
 
         return Task.FromResult(result);
