@@ -1,16 +1,13 @@
 ﻿using Hackathon.Fiap.UseCases.Doctors.Specilaties;
-using static Hackathon.Fiap.Web.Endpoints.Doctors.Specialties;
 
 namespace Hackathon.Fiap.Web.Endpoints.Doctors;
 
 /// <summary>
 /// List available specialties
 /// </summary>
-public class Specialties(IMediator mediator) : EndpointWithoutRequest<IEnumerable<GetSpecialtiesRespose>>
+public partial class Specialties(IMediator mediator) : EndpointWithoutRequest<IEnumerable<GetSpecialtiesRespose>>
 {
     private readonly IMediator _mediator = mediator;
-
-    public record GetSpecialtiesRespose(int Id, string Name);
 
     public override void Configure()
     {
