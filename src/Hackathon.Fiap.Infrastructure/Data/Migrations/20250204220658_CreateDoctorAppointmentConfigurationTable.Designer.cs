@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Hackathon.Fiap.Infrastructure.Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250204204627_CreateDoctorAppointmentConfigurationTable")]
+    [Migration("20250204220658_CreateDoctorAppointmentConfigurationTable")]
     partial class CreateDoctorAppointmentConfigurationTable
     {
         /// <inheritdoc />
@@ -133,8 +133,8 @@ namespace Hackathon.Fiap.Infrastructure.Data.Migrations
                     b.Property<int>("DoctorId")
                         .HasColumnType("int");
 
-                    b.Property<TimeOnly>("Duration")
-                        .HasColumnType("time");
+                    b.Property<double>("Duration")
+                        .HasColumnType("float");
 
                     b.Property<double>("Price")
                         .HasColumnType("float");

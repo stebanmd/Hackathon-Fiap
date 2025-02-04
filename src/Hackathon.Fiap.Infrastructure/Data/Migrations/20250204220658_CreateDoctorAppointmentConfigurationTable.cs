@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
@@ -19,7 +18,7 @@ public partial class CreateDoctorAppointmentConfigurationTable : Migration
                     .Annotation("SqlServer:Identity", "1, 1"),
                 DoctorId = table.Column<int>(type: "int", nullable: false),
                 Price = table.Column<double>(type: "float", nullable: false),
-                Duration = table.Column<TimeOnly>(type: "time", nullable: false)
+                Duration = table.Column<double>(type: "float", nullable: false)
             },
             constraints: table =>
             {
