@@ -1,4 +1,5 @@
 ﻿using Hackathon.Fiap.Core.Aggregates.Doctors;
+using Hackathon.Fiap.Core.Aggregates.Doctors.Specifications;
 using Hackathon.Fiap.Core.Aggregates.Users;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
@@ -7,13 +8,14 @@ namespace Hackathon.Fiap.UseCases.Doctors.Register;
 
 public class RegisterDoctorHandler(
     ILogger<RegisterDoctorHandler> logger,
-    IRepository<Doctor> repository,
+    IRepository<Doctor> doctorsRepository,
+    IRepository<Specialty> specialtyRepository,
     UserManager<ApplicationUser> userManager,
     IUserStore<ApplicationUser> userStore) : ICommandHandler<RegisterDoctorCommand, Result<int>>
 {
-
     private readonly ILogger<RegisterDoctorHandler> _logger = logger;
-    private readonly IRepository<Doctor> _repository = repository;
+    private readonly IRepository<Doctor> _doctorsRepository = doctorsRepository;
+    private readonly IRepository<Specialty> _specialtyRepository = specialtyRepository;
     private readonly UserManager<ApplicationUser> _userManager = userManager;
     private readonly IUserStore<ApplicationUser> _userStore = userStore;
 
@@ -49,7 +51,13 @@ public class RegisterDoctorHandler(
         var newDoctor = new Doctor(request.Name, request.Cpf, request.Crm);
         newDoctor.SetUser(user);
 
-        var createdItem = await _repository.AddAsync(newDoctor, cancellationToken);
+        if (request.specialtyId.HasValue)
+        {
+            var specialty = await _specialtyRepository.FirstOrDefaultAsync(new GetSpecialtyByIdSpec(request.specialtyId.Value), cancellationToken);
+            newDoctor.SetSpecialty(specialty);
+        }
+
+        var createdItem = await _doctorsRepository.AddAsync(newDoctor, cancellationToken);
         return createdItem.Id;
     }
 }

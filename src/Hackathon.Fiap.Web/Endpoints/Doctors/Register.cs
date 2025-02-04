@@ -36,7 +36,7 @@ public partial class Register(IMediator mediator) : Endpoint<RegisterDoctorReque
 
     public override async Task HandleAsync(RegisterDoctorRequest req, CancellationToken ct)
     {
-        var command = new RegisterDoctorCommand(req.Name, req.Cpf, req.Crm, req.Email, req.Password);
+        var command = new RegisterDoctorCommand(req.Name, req.Cpf, req.Crm, req.Email, req.Password, req.SpecialtyId);
         var result = await _mediator.Send(command, ct);
 
         await SendResultAsync(result.ToMinimalApiResult());
