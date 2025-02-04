@@ -5,6 +5,7 @@ using Hackathon.Fiap.Infrastructure.Authorization;
 using Hackathon.Fiap.Infrastructure.Data;
 using Hackathon.Fiap.Infrastructure.Data.Queries;
 using Hackathon.Fiap.UseCases.Contributors.List;
+using Hackathon.Fiap.UseCases.Doctors.List;
 using Microsoft.AspNetCore.Authorization;
 
 namespace Hackathon.Fiap.Infrastructure;
@@ -18,11 +19,13 @@ public static class InfrastructureServiceExtensions
             // do not configure a DbContext here for testing - it's configured in CustomWebApplicationFactory
 
             services.AddScoped<IListContributorsQueryService, FakeListContributorsQueryService>();
+            services.AddScoped<IListDoctorsQueryService, FakeListDoctorsQueryService>();
         }
         else
         {
             AddDbContext(services, config);
             services.AddScoped<IListContributorsQueryService, ListContributorsQueryService>();
+            services.AddScoped<IListDoctorsQueryService, ListDoctorsQueryService>();
         }
 
         services.AddScoped<IDeleteContributorService, DeleteContributorService>();

@@ -1,4 +1,4 @@
-﻿namespace Hackathon.Fiap.Web;
+﻿namespace Hackathon.Fiap.UseCases;
 
 public static class ApplicationRoles
 {

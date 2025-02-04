@@ -1,6 +1,5 @@
 ﻿using Hackathon.Fiap.Core.Aggregates.Doctors;
 using Hackathon.Fiap.Core.Aggregates.Users;
-using Hackathon.Fiap.Web;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
 
