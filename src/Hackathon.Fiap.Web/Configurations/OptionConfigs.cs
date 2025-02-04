@@ -1,4 +1,5 @@
-﻿using Ardalis.ListStartupServices;
+﻿using System.Text.Json.Serialization;
+using Ardalis.ListStartupServices;
 using Hackathon.Fiap.Infrastructure.Email;
 
 namespace Hackathon.Fiap.Web.Configurations;
@@ -19,6 +20,15 @@ public static class OptionConfigs
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
+
+        services.ConfigureHttpJsonOptions(options =>
+        {
+            options.SerializerOptions.Converters.Add(new JsonStringEnumConverter());
+        });
+        services.Configure<Microsoft.AspNetCore.Mvc.JsonOptions>(options =>
+        {
+            options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+        });
 
         if (builder.Environment.IsDevelopment())
         {

@@ -1,6 +1,7 @@
 ﻿using Hackathon.Fiap.Core.Aggregates.Doctors;
 
 namespace Hackathon.Fiap.Infrastructure.Data.Config;
+
 public sealed class ScheduleConfiguration : IEntityTypeConfiguration<Schedule>
 {
     public void Configure(EntityTypeBuilder<Schedule> builder)
@@ -8,7 +9,6 @@ public sealed class ScheduleConfiguration : IEntityTypeConfiguration<Schedule>
         builder
             .Property(x => x.DayOfWeek)
             .HasConversion<string>()
-            .HasMaxLength(10)
-            .IsRequired();
+            .HasMaxLength(10);
     }
 }

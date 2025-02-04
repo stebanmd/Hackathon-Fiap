@@ -3,7 +3,7 @@ public class Schedule : EntityBase
 {
     public int DoctorId { get; set; }
 
-    public DayOfWeek DayOfWeek { get; set; }
+    public DayOfWeek? DayOfWeek { get; set; }
     public DateOnly? Day { get; set; }
 
     public TimeOnly Start { get; set; }
