@@ -21,6 +21,10 @@ public sealed class DoctorConfiguration : IEntityTypeConfiguration<Doctor>
             .WithOne()
             .HasForeignKey(typeof(Doctor), nameof(Doctor.UserId));
 
+        builder.HasOne(x => x.AppointmentConfiguration)
+            .WithOne()
+            .HasForeignKey(typeof(DoctorAppointmentConfiguration), nameof(DoctorAppointmentConfiguration.DoctorId));
+
         builder.HasMany(x => x.Schedules)
             .WithOne()
             .HasForeignKey(x => x.DoctorId);
