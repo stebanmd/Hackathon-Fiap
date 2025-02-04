@@ -1,10 +1,10 @@
 ﻿using Hackathon.Fiap.Infrastructure.Data;
 using Hackathon.Fiap.Web.Endpoints.Contributors;
 
-namespace Hackathon.Fiap.FunctionalTests.ApiEndpoints;
+namespace Hackathon.Fiap.FunctionalTests.ApiEndpoints.Contributors;
 
 [Collection("Sequential")]
-public class ContributorList(CustomWebApplicationFactory<Program> factory) : IClassFixture<CustomWebApplicationFactory<Program>>
+public class List(CustomWebApplicationFactory<Program> factory) : IClassFixture<CustomWebApplicationFactory<Program>>
 {
     private readonly HttpClient _client = factory.CreateClient();
 
