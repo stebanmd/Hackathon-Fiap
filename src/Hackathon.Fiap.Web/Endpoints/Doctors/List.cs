@@ -1,4 +1,5 @@
-﻿using Hackathon.Fiap.UseCases.Doctors.List;
+﻿using Hackathon.Fiap.UseCases;
+using Hackathon.Fiap.UseCases.Doctors.List;
 
 namespace Hackathon.Fiap.Web.Endpoints.Doctors;
 
@@ -12,8 +13,8 @@ public class List(IMediator _mediator) : EndpointWithoutRequest<DoctorListRespon
 {
     public override void Configure()
     {
-        Get("/doctors");
-        AllowAnonymous();
+        Get("/doctors"); //this magic string will be in the request model
+        Roles(ApplicationRoles.Patient, ApplicationRoles.Admin);
     }
 
     public override async Task HandleAsync(CancellationToken ct)
