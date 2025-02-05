@@ -26,7 +26,7 @@ public partial class Register(IMediator mediator) : Endpoint<RegisterDoctorReque
             (
                 "Dr. John Doe",
                 "12345678909",
-                "123456/RS",
+                "123456-RS",
                 "doctor@email.com",
                 "str0ngP@ssword"
             )

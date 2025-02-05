@@ -25,17 +25,24 @@ public class RegisterDoctorHandler(
 
         _logger.LogInformation("Registering doctor {Name} with email {Email}", request.Name, request.Email);
 
-        var user = await _userManager.FindByEmailAsync(request.Email);
-        if (user is not null)
+        var userByEmail = await _userManager.FindByEmailAsync(request.Email);
+        if (userByEmail is not null)
         {
             _logger.LogError("Email {Email} already in use.", request.Email);
             return Result<int>.Conflict("User already exists");
         }
 
-        user = new();
+        var userByName = await _userManager.FindByNameAsync(request.Crm);
+        if (userByName is not null)
+        {
+            _logger.LogError("Username {Crm} already in use.", request.Crm);
+            return Result<int>.Conflict("User already exists");
+        }
+
+        var user = new ApplicationUser();
         var emailStore = (IUserEmailStore<ApplicationUser>)_userStore;
 
-        await _userStore.SetUserNameAsync(user, request.Email, cancellationToken);
+        await _userStore.SetUserNameAsync(user, request.Crm, cancellationToken);
         await emailStore.SetEmailAsync(user, request.Email, cancellationToken);
 
         var identityResult = await _userManager.CreateAsync(user, request.Password);
