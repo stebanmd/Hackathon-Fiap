@@ -29,6 +29,7 @@ public static class InfrastructureServiceExtensions
         }
 
         services.AddScoped<IDeleteContributorService, DeleteContributorService>();
+        services.AddScoped<ICreateAppointmentService, CreateAppointmentService>();
 
         services
             .AddScoped(typeof(IRepository<>), typeof(EfRepository<>))
