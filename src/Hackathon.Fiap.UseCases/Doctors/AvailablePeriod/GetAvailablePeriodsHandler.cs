@@ -22,14 +22,14 @@ public class GetAvailablePeriodsHandler(
 
         if (doctor is null)
         {
-            _logger.LogWarning("Doctor not found");
-            return Result<AvailableAppointmentsDto>.NotFound("Doctor not found");
+            _logger.LogWarning("Doctor not found.");
+            return Result<AvailableAppointmentsDto>.NotFound("Doctor not found.");
         }
 
         if (doctor.AppointmentConfiguration is null)
         {
-            _logger.LogWarning("Doctor does not have appointment configurated");
-            return Result<AvailableAppointmentsDto>.Error("Doctor does not have appointment configurated");
+            _logger.LogWarning("Doctor does not have appointment configurated.");
+            return Result<AvailableAppointmentsDto>.Error("Doctor does not have appointment configurated.");
         }
 
         var specAppointments = new GetDoctorAppointmentsByDate(request.DoctorId, request.Date);

@@ -29,8 +29,8 @@ public partial class AvailablePeriods(IMediator mediator) : Endpoint<GetAvailabl
 
         if (!result.IsSuccess)
         {
-            await SendErrorsAsync();
-            return;
+            result.Errors.ToList().ForEach(error => AddError(error));
+            ThrowIfAnyErrors(StatusCodes.Status400BadRequest);
         }
 
         Response = new GetAvailablePeriodsResponse(result.Value.Price, result.Value.AvailableTimes);
