@@ -50,4 +50,9 @@ public class Doctor(string name, string cpf, string crm) : EntityBase, IAggregat
     {
         AppointmentConfiguration = appointmentConfiguration;
     }
+
+    public double GetAppointmentDuration()
+    {
+        return AppointmentConfiguration?.Duration ?? 0;
+    }
 }
