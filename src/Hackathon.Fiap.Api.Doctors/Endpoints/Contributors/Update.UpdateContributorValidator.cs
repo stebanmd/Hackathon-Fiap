@@ -1,5 +1,4 @@
-﻿using FluentValidation;
-using Hackathon.Fiap.Infrastructure.Data.Config;
+﻿using Hackathon.Fiap.Infrastructure.Data.Config;
 
 namespace Hackathon.Fiap.Api.Doctors.Endpoints.Contributors;
 

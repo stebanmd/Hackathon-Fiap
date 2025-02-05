@@ -1,6 +1,4 @@
-﻿using FluentValidation;
-
-namespace Hackathon.Fiap.Api.Doctors.Endpoints.Contributors;
+﻿namespace Hackathon.Fiap.Api.Doctors.Endpoints.Contributors;
 
 /// <summary>
 /// See: https://fast-endpoints.com/docs/validation

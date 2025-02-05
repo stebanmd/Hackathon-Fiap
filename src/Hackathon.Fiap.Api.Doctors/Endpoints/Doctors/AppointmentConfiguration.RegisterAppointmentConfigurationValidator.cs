@@ -1,6 +1,4 @@
-﻿using FluentValidation;
-
-namespace Hackathon.Fiap.Api.Doctors.Endpoints.Doctors;
+﻿namespace Hackathon.Fiap.Api.Doctors.Endpoints.Doctors;
 
 public class RegisterAppointmentConfigurationValidator : Validator<RegisterAppointmentConfigurationRequest>
 {
