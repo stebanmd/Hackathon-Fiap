@@ -40,7 +40,7 @@ public class CreateSchedulesHandler(IRepository<Doctor> repository, ILogger<Crea
         {
             var schedule = new Schedule()
             {
-                Day= request.Day,
+                Day = request.Day,
                 Start = request.StartTime,
                 End = request.EndTime,
             };
