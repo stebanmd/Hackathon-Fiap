@@ -1,4 +1,4 @@
-﻿using Hackathon.Fiap.Web.Configurations;
+﻿using Hackathon.Fiap.Api.Patients.Configurations;
 using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);

@@ -1,0 +1,25 @@
+﻿using System.Reflection;
+using Hackathon.Fiap.Core.Abstractions;
+using Hackathon.Fiap.Core.Aggregates.Contributors;
+using Hackathon.Fiap.UseCases.Contributors.Create;
+
+namespace Hackathon.Fiap.Api.Doctors.Configurations;
+
+public static class MediatrConfigs
+{
+    public static IServiceCollection AddMediatrConfigs(this IServiceCollection services)
+    {
+        var mediatRAssemblies = new[]
+        {
+            Assembly.GetAssembly(typeof(Contributor)), // Core
+            Assembly.GetAssembly(typeof(CreateContributorCommand)) // UseCases
+        };
+
+        services
+            .AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(mediatRAssemblies!))
+            .AddScoped(typeof(IPipelineBehavior<,>), typeof(LoggingBehavior<,>))
+            .AddScoped<IDomainEventDispatcher, MediatRDomainEventDispatcher>();
+
+        return services;
+    }
+}
