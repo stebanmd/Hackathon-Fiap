@@ -1,8 +1,5 @@
-﻿using FluentValidation;
-using FluentValidation.Results;
-using Hackathon.Fiap.Api.Doctors.Commons.Validators;
+﻿using Hackathon.Fiap.Api.Doctors.Commons.Validators;
 using Hackathon.Fiap.Infrastructure.Data.Config;
-using Hackathon.Fiap.Web.Commons.Validators;
 
 namespace Hackathon.Fiap.Api.Doctors.Endpoints.Doctors;
 
@@ -12,6 +9,7 @@ public class RegisterDoctorValidator : Validator<RegisterDoctorRequest>
     {
         RuleFor(x => x.Name)
             .NotEmpty()
+            .MinimumLength(2)
             .MaximumLength(DataSchemaConstants.DEFAULT_NAME_LENGTH);
 
         RuleFor(x => x.Cpf)

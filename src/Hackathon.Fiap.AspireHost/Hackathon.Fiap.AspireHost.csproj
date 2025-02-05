@@ -19,7 +19,6 @@
   <ItemGroup>
     <ProjectReference Include="..\Hackathon.Fiap.Api.Doctors\Hackathon.Fiap.Api.Doctors.csproj" />
     <ProjectReference Include="..\Hackathon.Fiap.Api.Patients\Hackathon.Fiap.Api.Patients.csproj" />
-    <ProjectReference Include="..\Hackathon.Fiap.Web\Hackathon.Fiap.Web.csproj" />
   </ItemGroup>
   <ItemGroup>
     <!-- The IsAspireProjectResource attribute tells .NET Aspire to treat this 

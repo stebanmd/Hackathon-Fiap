@@ -1,4 +1,4 @@
-﻿namespace Hackathon.Fiap.Web.Endpoints.Appointments;
+﻿namespace Hackathon.Fiap.Api.Patients.Endpoints.Appointments;
 
 public sealed class CreateAppointmentValidator : Validator<CreateAppointmentRequest>
 {

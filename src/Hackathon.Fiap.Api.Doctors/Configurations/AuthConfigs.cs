@@ -25,11 +25,6 @@ internal static class AuthConfigs
 
     public static WebApplication ConfigureAuthentication(this WebApplication app)
     {
-        // Add endpoints with default implementation for the Identity Users
-        //app
-        //    .MapIdentityApi<ApplicationUser>()
-        //    .WithTags("Authentication");
-
         app
           .UseAuthentication()
           .UseAuthorization();

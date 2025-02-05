@@ -1,9 +1,9 @@
-﻿using Hackathon.Fiap.UseCases;
+﻿using Hackathon.Fiap.Api.Patients.Commons.Extensions;
+using Hackathon.Fiap.UseCases;
 using Hackathon.Fiap.UseCases.Appointments.Create;
 using Hackathon.Fiap.UseCases.Patients.GetByUserId;
-using Hackathon.Fiap.Web.Commons.Extensions;
 
-namespace Hackathon.Fiap.Web.Endpoints.Appointments;
+namespace Hackathon.Fiap.Api.Patients.Endpoints.Appointments;
 
 public sealed partial class Create(IMediator mediator) : Endpoint<CreateAppointmentRequest>
 {
