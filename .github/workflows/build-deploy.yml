@@ -1,0 +1,51 @@
+name: CI/CD
+on:
+  workflow_dispatch:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build-test-publish:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        global-json-file: global.json
+        
+    - name: Restore
+      run: dotnet restore
+
+    - name: Build
+      run: dotnet build --no-restore -c Release
+      
+    - name: Test
+      run: dotnet test -c Release --no-build --verbosity normal
+
+    - name: Publish
+      run: dotnet publish ${{ env.WEBAPP_PROJECT_NAME }} -c Release --no-build -o ${{ env.WEBAPP_PACKAGE_PATH }}
+
+    - name: Upload Artifacts
+      run: echo "Here we would upload an artifact with the published app"
+
+  deploy:
+    needs: [build-test-publish]
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Checkout code"
+
+      - run: echo "Login to Azure with CLI"
+
+      - run: echo "Setup dotnet with global-json-file attribute"
+
+      - run: echo "Build code"
+
+      - run: echo "Deploy database via 'dotnet ef database update --no-build ...'"
+
+      - run: echo "Download artifact from previous job (build-test-publish => Upload Artifacts)"
+
+      - run: echo "Deploy to App Service"
+
+      - run: echo "Logout from Azure CLI"

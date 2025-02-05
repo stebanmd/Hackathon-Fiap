@@ -1,16 +1,42 @@
-# This workflow will build a .NET project
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
-
 name: Build & Tests
 on:
-  workflow_dispatch:
-  push:
-    branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
 
 jobs:
-  build:
+  code-analysis:
+    runs-on: windows-latest
+    timeout-minutes: 10
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          global-json-file: global.json
+
+      - name: Run dotnet restore
+        run: dotnet restore
+
+      - name: Run dotnet code analysis
+        run: dotnet format --no-restore --verify-no-changes -v diag --exclude **/Migrations/*.cs
+
+      - name: Create comment
+        if: failure()
+        uses: peter-evans/create-or-update-comment@v4
+        with:
+          issue-number: ${{ github.event.pull_request.number }}
+          body: |
+            Please fix your code style 🧑‍💻
+
+            Run the following command:
+              
+            ```
+            dotnet format
+            ```
+          reactions: "-1"
+
+  build-test:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
@@ -18,11 +44,11 @@ jobs:
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
       with:
-        dotnet-version: '9.0.x'
+        global-json-file: global.json
         
     - name: Restore dependencies
       run: dotnet restore
-      
+
     - name: Build
       run: dotnet build --no-restore -c Release
       
