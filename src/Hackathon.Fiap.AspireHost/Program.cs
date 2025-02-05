@@ -25,8 +25,12 @@ builder.AddContainer("papercut", "jijiechen/papercut", tag: "latest")
     .WithEndpoint(port: 25, targetPort: 25)
     .WithEndpoint(port: 37408, targetPort: 37408, scheme: "http");
 
-builder.AddProject<Projects.Hackathon_Fiap_Web>("api")
+builder.AddProject<Projects.Hackathon_Fiap_Api_Patients>("api-patients")
     .WithReference(database)
     .WaitFor(database);
+
+builder.AddProject<Projects.Hackathon_Fiap_Api_Doctors>("api-doctors")
+    .WithReference(database)
+    .WaitFor(database); ;
 
 await builder.Build().RunAsync();
