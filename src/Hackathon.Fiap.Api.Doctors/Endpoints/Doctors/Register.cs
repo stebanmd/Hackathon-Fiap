@@ -1,5 +1,4 @@
-﻿using Ardalis.Result.AspNetCore;
-using Hackathon.Fiap.UseCases.Doctors.Register;
+﻿using Hackathon.Fiap.UseCases.Doctors.Register;
 
 namespace Hackathon.Fiap.Api.Doctors.Endpoints.Doctors;
 
