@@ -4,7 +4,7 @@ namespace Hackathon.Fiap.Web.Endpoints.Doctors;
 
 public record GetAvailablePeriodsRequest(DateOnly Date)
 {
-    public const string Route = "doctors/{DoctorId:int}/availableTimes";
+    public const string Route = "doctors/{DoctorId:int}/periods";
 
     [FromRoute]
     public int DoctorId { get; set; }

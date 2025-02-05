@@ -5,7 +5,7 @@ namespace Hackathon.Fiap.Web.Endpoints.Doctors;
 
 /// <summary>
 /// Get the available periods for a doctor on a specific date.
-/// </summary
+/// </summary>
 public partial class AvailablePeriods(IMediator mediator) : Endpoint<GetAvailablePeriodsRequest, GetAvailablePeriodsResponse>
 {
     private readonly IMediator _mediator = mediator;
