@@ -4,9 +4,9 @@ namespace Hackathon.Fiap.Core.Aggregates.Doctors.Specifications;
 
 public class GetAppointmentsByStatusSpec : Specification<Appointment>
 {
-    public GetAppointmentsByStatusSpec(AppointmentStatus? status)
+    public GetAppointmentsByStatusSpec(int doctorId, AppointmentStatus? status)
     {
         Query
-             .Where(x => status == null || x.Status == status);
+             .Where(x => x.DoctorId == doctorId && (status == null || x.Status == status));
     }
 }

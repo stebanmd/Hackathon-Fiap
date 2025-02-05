@@ -1,5 +1,7 @@
 ﻿using Hackathon.Fiap.UseCases;
 using Hackathon.Fiap.UseCases.Doctors.Appointments;
+using Hackathon.Fiap.UseCases.Doctors.GetByUserId;
+using Hackathon.Fiap.Web.Commons.Extensions;
 
 namespace Hackathon.Fiap.Web.Endpoints.Doctors;
 
@@ -18,7 +20,14 @@ public partial class Appointments(IMediator mediator) : Endpoint<GetAppointments
 
     public override async Task HandleAsync(GetAppointmentsRequest req, CancellationToken ct)
     {
-        var result = await _mediator.Send(new GetAppointmentsQuery(req.Status), ct);
+        var doctor = await _mediator.Send(new GetDoctorByUserIdQuery(User.GetUserId()), ct);
+        if (doctor is null)
+        {
+            await SendForbiddenAsync(ct);
+            return;
+        }
+
+        var result = await _mediator.Send(new GetAppointmentsQuery(doctor.Id, req.Status), ct);
         Response = result.Select(x => new GetAppointmentsResponse(x.Id, x.Start, x.End, x.Status, x.PatientId));
     }
 }

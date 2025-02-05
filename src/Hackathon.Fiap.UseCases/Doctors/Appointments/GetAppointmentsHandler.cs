@@ -11,7 +11,7 @@ public class GetAppointmentsHandler(IRepository<Appointment> repository) : IQuer
     {
         cancellationToken.ThrowIfCancellationRequested();
 
-        var spec = new GetAppointmentsByStatusSpec(request.Status);
+        var spec = new GetAppointmentsByStatusSpec(request.DoctorId, request.Status);
         var result = await _repository.ListAsync(spec, cancellationToken);
 
         return result.Select(x => new AppointmentsDto(x.Id, x.Start, x.End, x.Status, x.PatientId));
