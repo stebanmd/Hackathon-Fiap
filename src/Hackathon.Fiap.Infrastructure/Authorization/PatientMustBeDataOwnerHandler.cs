@@ -28,7 +28,7 @@ public class PatientMustBeDataOwnerHandler : AuthorizationHandler<PatientMustBeD
             return;
         }
 
-        var role = context.User.Claims.Where(c => c.Issuer == ClaimTypes.Role).Select(x => x.Value);
+        var role = context.User.Claims.Where(c => c.Type == ClaimTypes.Role).Select(x => x.Value);
         if (role.Contains(ApplicationRoles.Admin))
         {
             _logger.LogInformation("Access granted to Admin user.");
@@ -36,7 +36,7 @@ public class PatientMustBeDataOwnerHandler : AuthorizationHandler<PatientMustBeD
             return;
         }
 
-        var userId = context.User.Claims.FirstOrDefault(c => c.Issuer == ClaimTypes.NameIdentifier)?.Value;
+        var userId = context.User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
 
         if (userId is null)
         {
