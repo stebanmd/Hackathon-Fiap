@@ -1,3 +1,3 @@
 ﻿namespace Hackathon.Fiap.Api.Patients.Endpoints.Doctors;
 
-public record GetSpecialtiesRespose(int Id, string Name);
+public record GetSpecialtiesResponse(int Id, string Name);

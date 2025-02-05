@@ -1,6 +1,6 @@
 ﻿using Hackathon.Fiap.Core.Aggregates.Doctors;
 
-namespace Hackathon.Fiap.UseCases.Doctors.Specilaties;
+namespace Hackathon.Fiap.UseCases.Doctors.Specialties;
 
 public class GetSpecialtiesHandler(IRepository<Specialty> repository) : IQueryHandler<GetSpecialtiesQuery, IEnumerable<SpecialtyDto>>
 {

@@ -1,11 +1,11 @@
-﻿using Hackathon.Fiap.UseCases.Doctors.Specilaties;
+﻿using Hackathon.Fiap.UseCases.Doctors.Specialties;
 
 namespace Hackathon.Fiap.Api.Doctors.Endpoints.Doctors;
 
 /// <summary>
 /// List available specialties
 /// </summary>
-public partial class Specialties(IMediator mediator) : EndpointWithoutRequest<IEnumerable<GetSpecialtiesRespose>>
+public partial class Specialties(IMediator mediator) : EndpointWithoutRequest<IEnumerable<GetSpecialtiesResponse>>
 {
     private readonly IMediator _mediator = mediator;
 
@@ -18,6 +18,6 @@ public partial class Specialties(IMediator mediator) : EndpointWithoutRequest<IE
     public override async Task HandleAsync(CancellationToken ct)
     {
         var result = await _mediator.Send(new GetSpecialtiesQuery(), ct);
-        Response = result.Select(x => new GetSpecialtiesRespose(x.Id, x.Name));
+        Response = result.Select(x => new GetSpecialtiesResponse(x.Id, x.Name));
     }
 }
