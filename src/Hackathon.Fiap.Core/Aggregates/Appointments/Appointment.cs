@@ -19,4 +19,10 @@ public class Appointment(DateTime start, DateTime end, int patientId, int doctor
         Status = AppointmentStatus.Canceled;
         RegisterDomainEvent(new CancelAppointmentEvent(this));
     }
+
+    public void Confirm()
+    {
+        Status = AppointmentStatus.Confirmed;
+        //RegisterDomainEvent(new ConfirmAppointmentEvent(this));
+    }
 }
