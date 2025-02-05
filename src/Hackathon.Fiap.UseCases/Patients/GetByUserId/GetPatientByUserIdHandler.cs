@@ -1,7 +1,7 @@
 ﻿using Hackathon.Fiap.Core.Aggregates.Patients;
 using Hackathon.Fiap.Core.Aggregates.Patients.Specifications;
 
-namespace Hackathon.Fiap.UseCases.Patients.GetByUser;
+namespace Hackathon.Fiap.UseCases.Patients.GetByUserId;
 
 public class GetPatientByUserIdHandler(IRepository<Patient> repository) : IQueryHandler<GetPatientByUserIdQuery, PatientDto?>
 {
