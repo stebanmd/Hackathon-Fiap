@@ -5,7 +5,7 @@ public class ListDoctorsHandler(IListDoctorsQueryService _query)
 {
     public async Task<Result<IEnumerable<DoctorDto>>> Handle(ListDoctorsQuery request, CancellationToken cancellationToken)
     {
-        var result = await _query.ListAsync();
+        var result = await _query.ListAsync(request.SpecialtyId);
 
         return Result.Success(result);
     }

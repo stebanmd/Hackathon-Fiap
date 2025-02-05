@@ -8,12 +8,13 @@ public class ListDoctorsQueryService(AppDbContext _db) : IListDoctorsQueryServic
     // You can use EF, Dapper, SqlClient, etc. for queries -
     // this is just an example
 
-    public async Task<IEnumerable<DoctorDto>> ListAsync()
+    public async Task<IEnumerable<DoctorDto>> ListAsync(int? specialtyId)
     {
         // NOTE: This will fail if testing with EF InMemory provider!
-        var result = await _db.Database.SqlQuery<DoctorDto>(
-          $"SELECT Id, Name, Cpf, Crm FROM Doctors") // don't fetch other big columns
-          .ToListAsync();
+        var result = await _db.Database
+            .SqlQuery<DoctorDto>($"SELECT Id, Name, Cpf, Crm, SpecialtyId FROM Doctors")
+            .Where(x => specialtyId == null || x.SpecialtyId == specialtyId)
+            .ToListAsync();
 
         return result;
     }
