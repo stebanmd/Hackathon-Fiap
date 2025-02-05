@@ -18,7 +18,7 @@ public class RegisterDoctorValidator : Validator<RegisterDoctorRequest>
 
         RuleFor(x => x.Crm)
             .NotEmpty()
-            .Matches(@"^[\d]{6}\/[A-Z]{2}$");
+            .Matches(@"^[\d]{6}\-[A-Z]{2}$");
 
         RuleFor(x => x.Email)
             .NotEmpty()
