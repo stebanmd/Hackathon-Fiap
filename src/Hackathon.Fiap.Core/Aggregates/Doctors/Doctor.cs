@@ -15,6 +15,8 @@ public class Doctor(string name, string cpf, string crm) : EntityBase, IAggregat
     public int? SpecialtyId { get; set; }
     public Specialty? Specialty { get; private set; }
 
+    public DoctorAppointmentConfiguration? AppointmentConfiguration { get; set; }
+
     public List<Schedule> Schedules { get; private set; } = [];
 
     public void AddSchedule(Schedule schedule)
@@ -42,5 +44,10 @@ public class Doctor(string name, string cpf, string crm) : EntityBase, IAggregat
     {
         SpecialtyId = specialty?.Id;
         Specialty = specialty;
+    }
+
+    public void SetAppointmentConfiguration(DoctorAppointmentConfiguration? appointmentConfiguration)
+    {
+        AppointmentConfiguration = appointmentConfiguration;
     }
 }

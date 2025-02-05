@@ -7,6 +7,7 @@ public class GetDoctorByIdSpec : Specification<Doctor>
         Query
           .Include(doc => doc.User)
           .Include(doc => doc.Schedules)
+          .Include(doc => doc.AppointmentConfiguration)
           .Where(doc => doc.Id == doctorId);
     }
 }

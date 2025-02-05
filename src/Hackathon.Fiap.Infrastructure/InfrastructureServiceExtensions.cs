@@ -35,6 +35,7 @@ public static class InfrastructureServiceExtensions
             .AddScoped(typeof(IReadRepository<>), typeof(EfRepository<>));
 
         services.AddScoped<IAuthorizationHandler, PatientMustBeDataOwnerHandler>();
+        services.AddScoped<IAuthorizationHandler, DoctorMustBeDataOwnerHandler>();
 
         logger.LogInformation("{Project} services registered", "Infrastructure");
         return services;
