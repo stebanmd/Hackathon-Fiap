@@ -6,5 +6,5 @@
 /// </summary>
 public interface IListDoctorsQueryService
 {
-    Task<IEnumerable<DoctorDto>> ListAsync();
+    Task<IEnumerable<DoctorDto>> ListAsync(int? specialtyId);
 }

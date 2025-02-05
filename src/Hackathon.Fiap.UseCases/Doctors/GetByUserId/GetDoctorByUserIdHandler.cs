@@ -14,7 +14,7 @@ public class GetDoctorByUserIdHandler(IRepository<Doctor> repository) : IQueryHa
 
         return doctor is null
             ? null
-            : new DoctorDto(doctor.Id, doctor.Name, doctor.Cpf, doctor.Crm);
+            : new DoctorDto(doctor.Id, doctor.Name, doctor.Cpf, doctor.Crm, doctor.SpecialtyId);
     }
 }
 
