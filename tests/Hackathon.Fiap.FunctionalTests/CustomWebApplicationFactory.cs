@@ -1,18 +1,27 @@
 ﻿using Hackathon.Fiap.Core.Abstractions;
 using Hackathon.Fiap.Infrastructure.Data;
-using Hackathon.Fiap.UseCases.Contributors.Create;
+using Hackathon.Fiap.UseCases.Doctors.Register;
+using MediatR;
+using Microsoft.AspNetCore.Authentication.BearerToken;
 using Microsoft.EntityFrameworkCore;
 
 namespace Hackathon.Fiap.FunctionalTests;
 
-public class CustomWebApplicationFactory<TProgram> : WebApplicationFactory<TProgram> where TProgram : class
+public sealed class CustomWebApplicationFactory<TProgram> : WebApplicationFactory<TProgram>, IDisposable where TProgram : class
 {
-    /// <summary>
-    /// Overriding CreateHost to avoid creating a separate ServiceProvider per this thread:
-    /// https://github.com/dotnet-architecture/eShopOnWeb/issues/465
-    /// </summary>
-    /// <param name="builder"></param>
-    /// <returns></returns>
+    private HttpClient? _customWebClient;
+    public HttpClient Client
+    {
+        get
+        {
+            if (_customWebClient is null)
+            {
+                _customWebClient = CreateClient();
+            }
+            return _customWebClient;
+        }
+    }
+
     protected override IHost CreateHost(IHostBuilder builder)
     {
         builder.UseEnvironment("Testing"); // will not send real emails
@@ -29,6 +38,8 @@ public class CustomWebApplicationFactory<TProgram> : WebApplicationFactory<TProg
             var scopedServices = scope.ServiceProvider;
             var db = scopedServices.GetRequiredService<AppDbContext>();
 
+            var mediator = scopedServices.GetRequiredService<IMediator>();
+
             var logger = scopedServices
                 .GetRequiredService<ILogger<CustomWebApplicationFactory<TProgram>>>();
 
@@ -43,6 +54,10 @@ public class CustomWebApplicationFactory<TProgram> : WebApplicationFactory<TProg
             {
                 // Seed the database with test data.
                 SeedData.PopulateTestDataAsync(db).Wait();
+
+                mediator.Send(SeedData.RegisterDoctor1Command).Wait();
+                mediator.Send(SeedData.RegisterDoctor2Command).Wait();
+                mediator.Send(SeedData.RegisterPatient1Command).Wait();
             }
             catch (Exception ex)
             {
@@ -60,7 +75,6 @@ public class CustomWebApplicationFactory<TProgram> : WebApplicationFactory<TProg
             .ConfigureServices(services =>
             {
                 // Configure test dependencies here
-
                 //// Remove the app's ApplicationDbContext registration.
                 var descriptors = services.Where(d =>
                         d.ServiceType == typeof(AppDbContext) ||
@@ -84,12 +98,43 @@ public class CustomWebApplicationFactory<TProgram> : WebApplicationFactory<TProg
                 // Add MediatR
                 services.AddMediatR(cfg =>
                 {
-                    cfg.RegisterServicesFromAssemblies(typeof(Program).Assembly,
-                      typeof(CreateContributorCommand).Assembly,
-                      typeof(AppDbContext).Assembly);
+                    cfg.RegisterServicesFromAssemblies(
+                        typeof(RegisterDoctorCommand).Assembly,
+                        typeof(AppDbContext).Assembly);
                 });
 
                 services.AddScoped<IDomainEventDispatcher, EventDispatcherTest>();
             });
+    }
+
+    public async Task<string> AuthenticateWithDoctor()
+    {
+        return await Authenticate(SeedData.RegisterDoctor1Command.Crm, SeedData.RegisterDoctor1Command.Password);
+    }
+
+    public async Task<string> AuthenticateWithPatient()
+    {
+        return await Authenticate(SeedData.RegisterPatient1Command.Email, SeedData.RegisterPatient1Command.Password);
+    }
+
+    private async Task<string> Authenticate(string username, string password)
+    {
+        var client = Client;
+        var content = StringContentHelpers.FromModelAsJson(new
+        {
+            username,
+            password
+        });
+
+        var response = await client.PostAndDeserializeAsync<AccessTokenResponse>("auth/login", content);
+        return response.AccessToken;
+    }
+
+    public new void Dispose()
+    {
+        using var scope = Services.CreateScope();
+        var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+        db.Database.EnsureDeleted();
+        GC.SuppressFinalize(this);
     }
 }
