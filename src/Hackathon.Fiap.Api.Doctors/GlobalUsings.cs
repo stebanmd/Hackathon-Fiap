@@ -1,7 +1,9 @@
 ﻿global using Ardalis.Result;
+global using Ardalis.Result.AspNetCore;
 global using FastEndpoints;
 global using FastEndpoints.Swagger;
 global using FluentValidation;
 global using FluentValidation.Results;
+global using Hackathon.Fiap.Api.Doctors.Commons.Extensions;
 global using MediatR;
 global using Serilog.Extensions.Logging;

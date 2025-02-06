@@ -1,5 +1,4 @@
-﻿using Ardalis.Result.AspNetCore;
-using Hackathon.Fiap.Infrastructure.Authorization;
+﻿using Hackathon.Fiap.Infrastructure.Authorization;
 using Hackathon.Fiap.UseCases;
 using Hackathon.Fiap.UseCases.Doctors.AppointmentConfiguration;
 using Microsoft.AspNetCore.Authorization;
