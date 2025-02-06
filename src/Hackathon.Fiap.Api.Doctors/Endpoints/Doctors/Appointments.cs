@@ -1,9 +1,9 @@
 ﻿using Hackathon.Fiap.UseCases;
 using Hackathon.Fiap.UseCases.Doctors.Appointments;
 using Hackathon.Fiap.UseCases.Doctors.GetByUserId;
-using Hackathon.Fiap.Web.Commons.Extensions;
+using Hackathon.Fiap.Api.Doctors.Commons.Extensions;
 
-namespace Hackathon.Fiap.Web.Endpoints.Doctors;
+namespace Hackathon.Fiap.Api.Doctors.Endpoints.Doctors;
 
 /// <summary>
 /// List available appointments
