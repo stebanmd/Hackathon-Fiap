@@ -1,5 +1,4 @@
 ﻿using Hackathon.Fiap.Api.Patients.Commons.Extensions;
-using Hackathon.Fiap.UseCases;
 using Hackathon.Fiap.UseCases.Appointments.PatientAppointments;
 using Hackathon.Fiap.UseCases.Patients.GetByUserId;
 
@@ -8,14 +7,14 @@ namespace Hackathon.Fiap.Api.Patients.Endpoints.Appointments;
 /// <summary>
 /// List patient appointments
 /// </summary>
-public partial class Appointments(IMediator mediator) : Endpoint<GetAppointmentsRequest, IEnumerable<GetAppointmentsResponse>>
+public partial class List(IMediator mediator) : Endpoint<GetAppointmentsRequest, IEnumerable<GetAppointmentsResponse>>
 {
     private readonly IMediator _mediator = mediator;
 
     public override void Configure()
     {
         Get(GetAppointmentsRequest.Route);
-        Roles(ApplicationRoles.Patient, ApplicationRoles.Admin);
+        Roles(ApplicationRoles.Patient);
     }
 
     public override async Task HandleAsync(GetAppointmentsRequest req, CancellationToken ct)
