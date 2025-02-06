@@ -1,5 +1,4 @@
-﻿using Hackathon.Fiap.UseCases;
-using Hackathon.Fiap.UseCases.Doctors.AvailablePeriod;
+﻿using Hackathon.Fiap.UseCases.Doctors.AvailablePeriod;
 
 namespace Hackathon.Fiap.Api.Patients.Endpoints.Doctors;
 

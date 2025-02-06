@@ -1,5 +1,4 @@
-﻿using Hackathon.Fiap.UseCases;
-using Hackathon.Fiap.UseCases.Doctors.List;
+﻿using Hackathon.Fiap.UseCases.Doctors.List;
 
 namespace Hackathon.Fiap.Api.Patients.Endpoints.Doctors;
 
@@ -14,7 +13,7 @@ public class List(IMediator _mediator) : Endpoint<DoctorListRequest, DoctorListR
     public override void Configure()
     {
         Get(DoctorListRequest.Route);
-        Roles(ApplicationRoles.Patient, ApplicationRoles.Admin);
+        Roles(ApplicationRoles.Patient);
     }
 
     public override async Task HandleAsync(DoctorListRequest req, CancellationToken ct)

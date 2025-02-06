@@ -1,6 +1,4 @@
-﻿using Hackathon.Fiap.Api.Doctors.Commons.Extensions;
-using Hackathon.Fiap.UseCases;
-using Hackathon.Fiap.UseCases.Appointments.DoctorAppointments;
+﻿using Hackathon.Fiap.UseCases.Appointments.DoctorAppointments;
 using Hackathon.Fiap.UseCases.Doctors.GetByUserId;
 
 namespace Hackathon.Fiap.Api.Doctors.Endpoints.Doctors;
@@ -15,7 +13,7 @@ public partial class Appointments(IMediator mediator) : Endpoint<GetAppointments
     public override void Configure()
     {
         Get(GetAppointmentsRequest.Route);
-        Roles(ApplicationRoles.Doctor, ApplicationRoles.Admin);
+        Roles(ApplicationRoles.Doctor);
     }
 
     public override async Task HandleAsync(GetAppointmentsRequest req, CancellationToken ct)

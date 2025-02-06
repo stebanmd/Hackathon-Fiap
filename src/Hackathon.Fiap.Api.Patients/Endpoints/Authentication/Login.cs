@@ -1,5 +1,4 @@
-﻿using Hackathon.Fiap.Core.Aggregates.Users;
-using Microsoft.AspNetCore.Authentication.BearerToken;
+﻿using Microsoft.AspNetCore.Authentication.BearerToken;
 using Microsoft.AspNetCore.Identity;
 
 namespace Hackathon.Fiap.Api.Patients.Endpoints.Authentication;
