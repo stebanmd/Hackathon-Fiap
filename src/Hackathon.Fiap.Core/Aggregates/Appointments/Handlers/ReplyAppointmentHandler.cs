@@ -26,7 +26,7 @@ internal class ReplyAppointmentHandler(IEmailSender emailSender, ILogger<ReplyAp
 
         var emailBody = new StringBuilder();
         emailBody.AppendLine($"Olá, {patient.Name}!");
-        emailBody.AppendLine($"Sua consulta agendadata para {appointment.Start:dd/MM/yyyy} às {appointment.Start:HH:mm}, com o doutor {doctor.Name} teve o status alterado para {statusMessage}.");
+        emailBody.AppendLine($"Sua consulta agendada para {appointment.Start:dd/MM/yyyy} às {appointment.Start:HH:mm}, com o doutor(a) {doctor.Name} teve o status alterado para {statusMessage}.");
         if (!string.IsNullOrEmpty(appointment.Reason))
         {
             emailBody.AppendLine($"Motivo:");
