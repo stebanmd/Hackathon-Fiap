@@ -1,7 +1,7 @@
-﻿using Hackathon.Fiap.UseCases;
-using Hackathon.Fiap.UseCases.Doctors.Appointments;
+﻿using Hackathon.Fiap.Api.Doctors.Commons.Extensions;
+using Hackathon.Fiap.UseCases;
+using Hackathon.Fiap.UseCases.Appointments.Appointments;
 using Hackathon.Fiap.UseCases.Doctors.GetByUserId;
-using Hackathon.Fiap.Api.Doctors.Commons.Extensions;
 
 namespace Hackathon.Fiap.Api.Doctors.Endpoints.Doctors;
 
@@ -28,6 +28,6 @@ public partial class Appointments(IMediator mediator) : Endpoint<GetAppointments
         }
 
         var result = await _mediator.Send(new GetAppointmentsQuery(doctor.Id, req.Status), ct);
-        Response = result.Select(x => new GetAppointmentsResponse(x.Id, x.Start, x.End, x.Status, x.PatientId));
+        Response = result.Select(x => new GetAppointmentsResponse(x.Id, x.Start, x.End, x.Status, x.PatientId, x.PatientName));
     }
 }

@@ -1,7 +1,7 @@
 ﻿using Hackathon.Fiap.Core.Aggregates.Appointments;
-using Hackathon.Fiap.Core.Aggregates.Doctors.Specifications;
+using Hackathon.Fiap.Core.Aggregates.Appointments.Specifications;
 
-namespace Hackathon.Fiap.UseCases.Doctors.Appointments;
+namespace Hackathon.Fiap.UseCases.Appointments.Appointments;
 
 public class GetAppointmentsHandler(IRepository<Appointment> repository) : IQueryHandler<GetAppointmentsQuery, IEnumerable<AppointmentsDto>>
 {
@@ -14,6 +14,6 @@ public class GetAppointmentsHandler(IRepository<Appointment> repository) : IQuer
         var spec = new GetAppointmentsByStatusSpec(request.DoctorId, request.Status);
         var result = await _repository.ListAsync(spec, cancellationToken);
 
-        return result.Select(x => new AppointmentsDto(x.Id, x.Start, x.End, x.Status, x.PatientId));
+        return result.Select(x => new AppointmentsDto(x.Id, x.Start, x.End, x.Status, x.PatientId, x.Patient.Name));
     }
 }
