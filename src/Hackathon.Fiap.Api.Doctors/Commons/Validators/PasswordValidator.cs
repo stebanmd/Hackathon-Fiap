@@ -1,4 +1,4 @@
-﻿using FluentValidation;
+﻿#pragma warning disable CS8625 // Cannot convert null literal to non-nullable reference type.
 using Hackathon.Fiap.Core.Aggregates.Users;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
