@@ -7,6 +7,6 @@ public class GetDoctorAppointmentsByDate : Specification<Appointment>
         Query
           .Include(app => app.Doctor)
           .Include(app => app.Patient)
-          .Where(app => app.DoctorId == doctorId && app.Start.Date == startDate);
+          .Where(app => app.DoctorId == doctorId && app.Start.Date == startDate && app.Status != AppointmentStatus.Canceled);
     }
 }

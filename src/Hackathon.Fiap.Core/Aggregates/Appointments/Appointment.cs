@@ -15,6 +15,8 @@ public class Appointment(DateTime start, DateTime end) : EntityBase, IAggregateR
     public int DoctorId { get; private set; }
     public Doctors.Doctor Doctor { get; private set; } = default!;
 
+    public string? Reason { get; private set; }
+
     public void SetDoctor(Doctors.Doctor doctor)
     {
         Doctor = doctor;
@@ -27,9 +29,10 @@ public class Appointment(DateTime start, DateTime end) : EntityBase, IAggregateR
         PatientId = patient.Id;
     }
 
-    public void Cancel()
+    public void Cancel(string reason)
     {
         Status = AppointmentStatus.Canceled;
+        Reason = reason;
         RegisterDomainEvent(new CancelAppointmentEvent(this));
     }
 

@@ -1,4 +1,5 @@
-﻿using Hackathon.Fiap.Core.Aggregates.Users;
+﻿#pragma warning disable CS8625 // Cannot convert null literal to non-nullable reference type.
+using Hackathon.Fiap.Core.Aggregates.Users;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
 
@@ -24,6 +25,7 @@ public class PasswordValidator : AbstractValidator<string>
         foreach (var validator in _userManager.PasswordValidators)
         {
             var result = await validator.ValidateAsync(_userManager, null, password);
+
             if (!result.Succeeded)
             {
                 foreach (var error in result.Errors)

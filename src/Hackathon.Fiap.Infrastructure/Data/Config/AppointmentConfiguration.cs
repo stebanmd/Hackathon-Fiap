@@ -21,6 +21,9 @@ public sealed class AppointmentConfiguration : IEntityTypeConfiguration<Appointm
             .HasForeignKey(x => x.DoctorId)
             .OnDelete(DeleteBehavior.Cascade);
 
+        builder.Property(x => x.Reason)
+            .HasMaxLength(500);
+
         builder.HasIndex(x => new { x.DoctorId, x.Start, x.Status })
             .HasFilter($"[{nameof(Appointment.Status)}] = 'Confirmed'")
             .IsUnique();
