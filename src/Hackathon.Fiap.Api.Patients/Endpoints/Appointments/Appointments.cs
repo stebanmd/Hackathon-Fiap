@@ -3,7 +3,7 @@ using Hackathon.Fiap.UseCases;
 using Hackathon.Fiap.UseCases.Appointments.PatientAppointments;
 using Hackathon.Fiap.UseCases.Patients.GetByUserId;
 
-namespace Hackathon.Fiap.Api.Patients.Endpoints.Patients;
+namespace Hackathon.Fiap.Api.Patients.Endpoints.Appointments;
 
 /// <summary>
 /// List patient appointments
