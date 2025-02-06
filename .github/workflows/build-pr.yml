@@ -4,6 +4,21 @@ on:
     branches: [ "main" ]
 
 jobs:
+  test-ignore:
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - name: Add PR Comment
+        uses: actions/github-script@v6
+        with:
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: 'Seu comentário aqui'
+            })
+
   code-analysis:
     runs-on: windows-latest
     timeout-minutes: 10
@@ -20,6 +35,8 @@ jobs:
 
       - name: Run dotnet code analysis
         run: dotnet format --no-restore --verify-no-changes -v diag --exclude **/Migrations/*.cs
+
+      
 
       - name: Create comment
         if: failure()
