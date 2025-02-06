@@ -36,9 +36,10 @@ public class Appointment(DateTime start, DateTime end) : EntityBase, IAggregateR
         RegisterDomainEvent(new CancelAppointmentEvent(this));
     }
 
-    public void Confirm()
+    public void Reply(AppointmentStatus status, string? reason)
     {
-        Status = AppointmentStatus.Confirmed;
+        Status = status;
+        Reason = reason;
         RegisterDomainEvent(new ReplyAppointmentEvent(this));
     }
 }

@@ -37,17 +37,8 @@ public sealed class ReplyAppointmentHandler(IRepository<Appointment> repository,
             return Result.Invalid(new ValidationError($"Appointment is already {request.Status}."));
         }
 
-        if (request.Status == AppointmentStatus.Confirmed)
-        {
-            appointment.Confirm();
-            await _repository.UpdateAsync(appointment, cancellationToken);
-            return Result.NoContent();
-        }
-        else
-        {
-            appointment.Cancel(request.Reason);
-            await _repository.UpdateAsync(appointment, cancellationToken);
-            return Result.NoContent();
-        }
+        appointment.Reply(request.Status, request.Reason);
+        await _repository.UpdateAsync(appointment, cancellationToken);
+        return Result.NoContent();
     }
 }
