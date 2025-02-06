@@ -1,11 +1,12 @@
-﻿using Ardalis.Result.AspNetCore;
-using Hackathon.Fiap.Api.Doctors.Commons.Extensions;
-using Hackathon.Fiap.UseCases;
+﻿using Hackathon.Fiap.UseCases;
 using Hackathon.Fiap.UseCases.Doctors.GetByUserId;
 using Hackathon.Fiap.UseCases.Schedules.Create;
 
 namespace Hackathon.Fiap.Api.Doctors.Endpoints.Schedules;
 
+/// <summary>
+/// Create a schedule for a doctor informing when they will be available
+/// </summary>
 public partial class Create(IMediator mediator) : Endpoint<CreateScheduleRequest>
 {
     private readonly IMediator _mediator = mediator;
