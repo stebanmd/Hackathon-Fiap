@@ -4,8 +4,8 @@ using Hackathon.Fiap.Api.Doctors.Endpoints.Doctors;
 
 namespace Hackathon.Fiap.FunctionalTests.Doctors.Doctors;
 
-[Collection("RegisterDoctor")]
-public class Register(CustomWebApplicationFactory<Program> factory) : IClassFixture<CustomWebApplicationFactory<Program>>
+[Collection("Doctor-Api")]
+public class Register(CustomWebApplicationFactory<Program> factory)
 {
     private readonly HttpClient _httpClient = factory.CreateClient();
 

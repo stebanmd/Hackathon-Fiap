@@ -1,13 +1,17 @@
-﻿using Hackathon.Fiap.Core.Abstractions;
+﻿using Hackathon.Fiap.Api.Doctors;
+using Hackathon.Fiap.Core.Abstractions;
 using Hackathon.Fiap.Infrastructure.Data;
+using Hackathon.Fiap.UseCases.Doctors.AppointmentConfiguration;
 using Hackathon.Fiap.UseCases.Doctors.Register;
+using Hackathon.Fiap.UseCases.Schedules.Create;
 using MediatR;
 using Microsoft.AspNetCore.Authentication.BearerToken;
 using Microsoft.EntityFrameworkCore;
 
 namespace Hackathon.Fiap.FunctionalTests;
 
-public sealed class CustomWebApplicationFactory<TProgram> : WebApplicationFactory<TProgram>, IDisposable where TProgram : class
+public sealed class CustomWebApplicationFactory<TProgram> :
+    WebApplicationFactory<TProgram>, IDisposable where TProgram : class
 {
     private HttpClient? _customWebClient;
     public HttpClient Client
@@ -55,9 +59,15 @@ public sealed class CustomWebApplicationFactory<TProgram> : WebApplicationFactor
                 // Seed the database with test data.
                 SeedData.PopulateTestDataAsync(db).Wait();
 
-                mediator.Send(SeedData.RegisterDoctor1Command).Wait();
-                mediator.Send(SeedData.RegisterDoctor2Command).Wait();
-                mediator.Send(SeedData.RegisterPatient1Command).Wait();
+                var doctorId = mediator.Send(SeedData.RegisterMockedDoctorCommand).GetAwaiter().GetResult();
+
+                mediator.Send(
+                    new RegisterAppointmentConfigurationCommand(100, 30, doctorId)).Wait();
+
+                mediator.Send(
+                    new CreateSchedulesCommand(doctorId, [], DateOnly.FromDateTime(DateTime.Today.AddDays(1)), new(8, 0), new(10, 0))).Wait();
+
+                mediator.Send(SeedData.RegisterMockedPatientCommand).Wait();
             }
             catch (Exception ex)
             {
@@ -109,12 +119,12 @@ public sealed class CustomWebApplicationFactory<TProgram> : WebApplicationFactor
 
     public async Task<string> AuthenticateWithDoctor()
     {
-        return await Authenticate(SeedData.RegisterDoctor1Command.Crm, SeedData.RegisterDoctor1Command.Password);
+        return await Authenticate(SeedData.RegisterMockedDoctorCommand.Crm, SeedData.RegisterMockedDoctorCommand.Password);
     }
 
     public async Task<string> AuthenticateWithPatient()
     {
-        return await Authenticate(SeedData.RegisterPatient1Command.Email, SeedData.RegisterPatient1Command.Password);
+        return await Authenticate(SeedData.RegisterMockedPatientCommand.Email, SeedData.RegisterMockedPatientCommand.Password);
     }
 
     private async Task<string> Authenticate(string username, string password)
@@ -138,3 +148,7 @@ public sealed class CustomWebApplicationFactory<TProgram> : WebApplicationFactor
         GC.SuppressFinalize(this);
     }
 }
+
+
+[CollectionDefinition("Doctor-Api")]
+public class DoctorApiCustomWebFactory : ICollectionFixture<CustomWebApplicationFactory<Program>> { }

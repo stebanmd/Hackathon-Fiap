@@ -20,7 +20,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\Hackathon.Fiap.Api.Doctors\Hackathon.Fiap.Api.Doctors.csproj" />
-    <ProjectReference Include="..\..\src\Hackathon.Fiap.Api.Patients\Hackathon.Fiap.Api.Patients.csproj" />
     <ProjectReference Include="..\..\src\Hackathon.Fiap.Infrastructure\Hackathon.Fiap.Infrastructure.csproj" />
     <ProjectReference Include="..\..\src\Hackathon.Fiap.UseCases\Hackathon.Fiap.UseCases.csproj" />
   </ItemGroup>

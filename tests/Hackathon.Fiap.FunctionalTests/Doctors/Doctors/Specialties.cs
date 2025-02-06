@@ -1,11 +1,11 @@
 ﻿using System.Net;
 using Hackathon.Fiap.Api.Doctors;
-using Hackathon.Fiap.Api.Patients.Endpoints.Doctors;
+using Hackathon.Fiap.Api.Doctors.Endpoints.Doctors;
 
 namespace Hackathon.Fiap.FunctionalTests.Doctors.Doctors;
 
-[Collection("Specialties")]
-public class Specialties(CustomWebApplicationFactory<Program> factory) : IClassFixture<CustomWebApplicationFactory<Program>>
+[Collection("Doctor-Api")]
+public class Specialties(CustomWebApplicationFactory<Program> factory) 
 {
     private readonly HttpClient _httpClient = factory.CreateClient();
 

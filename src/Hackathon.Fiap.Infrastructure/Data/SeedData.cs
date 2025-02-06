@@ -16,7 +16,7 @@ public static class SeedData
     public static readonly Specialty Specialty3 = new() { Id = 3, Name = "Pediatric" };
 
 
-    public static readonly RegisterDoctorCommand RegisterDoctor1Command = new(
+    public static readonly RegisterDoctorCommand RegisterMockedDoctorCommand = new(
         "John Doe",
         "12345678909",
         "123456-RS",
@@ -24,15 +24,7 @@ public static class SeedData
         "str0ngP@assword",
         Specialty1.Id);
 
-    public static readonly RegisterDoctorCommand RegisterDoctor2Command = new(
-        "Jane Doe",
-        "32145678964",
-        "654321-RS",
-        "dra_janedoe@test.com",
-        "str0ngP@assword",
-        Specialty1.Id);
-
-    public static readonly RegisterPatientCommand RegisterPatient1Command = new(
+    public static readonly RegisterPatientCommand RegisterMockedPatientCommand = new(
         "Alice",
         "45678912364",
         "alice@test.com",
