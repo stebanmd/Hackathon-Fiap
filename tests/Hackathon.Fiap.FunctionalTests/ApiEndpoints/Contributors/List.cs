@@ -1,5 +1,5 @@
-﻿using Hackathon.Fiap.Infrastructure.Data;
-using Hackathon.Fiap.Web.Endpoints.Contributors;
+﻿using Hackathon.Fiap.Api.Doctors.Endpoints.Contributors;
+using Hackathon.Fiap.Infrastructure.Data;
 
 namespace Hackathon.Fiap.FunctionalTests.ApiEndpoints.Contributors;
 
