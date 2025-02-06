@@ -1,5 +1,4 @@
-﻿global using Ardalis.Result;
-global using Ardalis.Result.AspNetCore;
+﻿global using Ardalis.Result.AspNetCore;
 global using FastEndpoints;
 global using FastEndpoints.Swagger;
 global using FluentValidation;

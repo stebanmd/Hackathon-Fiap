@@ -1,5 +1,4 @@
-﻿using Hackathon.Fiap.Core.Aggregates.Contributors;
-using Hackathon.Fiap.Core.Aggregates.Doctors;
+﻿using Hackathon.Fiap.Core.Aggregates.Doctors;
 using Hackathon.Fiap.Core.Aggregates.Users;
 using Hackathon.Fiap.UseCases.Doctors.Register;
 using Hackathon.Fiap.UseCases.Patients.Register;
@@ -8,9 +7,6 @@ namespace Hackathon.Fiap.Infrastructure.Data;
 
 public static class SeedData
 {
-    public static readonly Contributor Contributor1 = new("Ardalis");
-    public static readonly Contributor Contributor2 = new("Snowfrog");
-
     public static readonly Specialty Specialty1 = new() { Id = 1, Name = "Cardiologist" };
     public static readonly Specialty Specialty2 = new() { Id = 2, Name = "Geral" };
     public static readonly Specialty Specialty3 = new() { Id = 3, Name = "Pediatric" };
@@ -50,8 +46,6 @@ public static class SeedData
         );
 
         dbContext.Specialties.AddRange(Specialty1, Specialty2, Specialty3);
-
-        dbContext.Contributors.AddRange(Contributor1, Contributor2);
         await dbContext.SaveChangesAsync();
     }
 }

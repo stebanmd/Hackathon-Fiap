@@ -4,7 +4,6 @@ using Hackathon.Fiap.Core.Services;
 using Hackathon.Fiap.Infrastructure.Authorization;
 using Hackathon.Fiap.Infrastructure.Data;
 using Hackathon.Fiap.Infrastructure.Data.Queries;
-using Hackathon.Fiap.UseCases.Contributors.List;
 using Hackathon.Fiap.UseCases.Doctors.List;
 using Microsoft.AspNetCore.Authorization;
 
@@ -17,18 +16,15 @@ public static class InfrastructureServiceExtensions
         if (environmentName == "Testing")
         {
             // do not configure a DbContext here for testing - it's configured in CustomWebApplicationFactory
-
-            services.AddScoped<IListContributorsQueryService, FakeListContributorsQueryService>();
             services.AddScoped<IListDoctorsQueryService, FakeListDoctorsQueryService>();
         }
         else
         {
             AddDbContext(services, config);
-            services.AddScoped<IListContributorsQueryService, ListContributorsQueryService>();
+
             services.AddScoped<IListDoctorsQueryService, ListDoctorsQueryService>();
         }
 
-        services.AddScoped<IDeleteContributorService, DeleteContributorService>();
         services.AddScoped<ICreateAppointmentService, CreateAppointmentService>();
 
         services
