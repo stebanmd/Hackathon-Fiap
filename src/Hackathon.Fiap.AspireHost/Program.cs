@@ -16,8 +16,8 @@ var sqlPassword = builder.AddParameter("sql-password", secret: true);
  *
  */
 var sql = builder.AddSqlServer("sqlServer", password: sqlPassword, port: 51780)
-    .WithDataVolume()
-    .WithLifetime(ContainerLifetime.Persistent);
+    .WithDataVolume()                           
+    .WithLifetime(ContainerLifetime.Persistent);                           
 
 var database = sql.AddDatabase("hackathonDb");
 
