@@ -4,7 +4,7 @@ using Microsoft.Extensions.Logging;
 
 namespace Hackathon.Fiap.UseCases.Appointments.Cancel;
 
-public sealed class CancelAppointmentHandler(IRepository<Appointment> repository, ILogger<CancelAppointmentHandler> logger) 
+public sealed class CancelAppointmentHandler(IRepository<Appointment> repository, ILogger<CancelAppointmentHandler> logger)
     : ICommandHandler<CancelAppointmentCommand, Result>
 {
     private readonly IRepository<Appointment> _repository = repository;

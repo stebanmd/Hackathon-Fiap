@@ -15,7 +15,7 @@ internal class CancelAppointmentHandler(IEmailSender emailSender, ILogger<Cancel
         var appointment = notification.Appointment;
         var doctor = appointment.Doctor;
         var patient = appointment.Patient;
-        
+
         var emailBody = new StringBuilder();
         emailBody.AppendLine($"Olá, Dr. {doctor.Name}!");
         emailBody.AppendLine($"Sua consulta agendadata para {appointment.Start:dd/MM/yyyy} às {appointment.Start:HH:mm}, com o paciente {patient.Name} foi cancelada.");
