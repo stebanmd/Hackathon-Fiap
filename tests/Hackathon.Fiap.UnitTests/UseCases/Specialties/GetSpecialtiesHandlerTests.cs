@@ -32,7 +32,7 @@ public class GetSpecialtiesHandlerTests
 
     [Fact]
     public async Task ShouldThrowExceptionWhenCanceled()
-    {        
+    {
         Func<Task> act = async () => await _handler.Handle(new GetSpecialtiesQuery(), new CancellationToken(true));
         await act.Should().ThrowAsync<OperationCanceledException>();
     }

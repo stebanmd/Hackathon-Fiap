@@ -23,8 +23,8 @@ public class CreateAppointmentServiceTests
         var doctor = new Doctor("Doctor", "cpf", "crm");
         var patient = new Patient("Patient", "cpf");
 
-        var start = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day+1, 10, 0, 0, DateTimeKind.Unspecified);
-        var end = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day+1, 11, 0, 0, DateTimeKind.Unspecified);
+        var start = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day + 1, 10, 0, 0, DateTimeKind.Unspecified);
+        var end = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day + 1, 11, 0, 0, DateTimeKind.Unspecified);
 
 
         var appointment = new Appointment(start, end);

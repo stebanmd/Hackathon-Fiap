@@ -5,7 +5,7 @@ using Hackathon.Fiap.Api.Doctors.Endpoints.Doctors;
 namespace Hackathon.Fiap.FunctionalTests.Doctors.Doctors;
 
 [Collection("Doctor-Api")]
-public class Specialties(CustomWebApplicationFactory<Program> factory) 
+public class Specialties(CustomWebApplicationFactory<Program> factory)
 {
     private readonly HttpClient _httpClient = factory.CreateClient();
 

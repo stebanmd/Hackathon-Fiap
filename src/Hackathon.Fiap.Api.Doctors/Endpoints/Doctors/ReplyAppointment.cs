@@ -1,7 +1,4 @@
-﻿using Ardalis.Result.AspNetCore;
-using Hackathon.Fiap.Api.Doctors.Commons.Extensions;
-using Hackathon.Fiap.UseCases;
-using Hackathon.Fiap.UseCases.Appointments.Reply;
+﻿using Hackathon.Fiap.UseCases.Appointments.Reply;
 using Hackathon.Fiap.UseCases.Doctors.GetByUserId;
 
 namespace Hackathon.Fiap.Api.Doctors.Endpoints.Doctors;

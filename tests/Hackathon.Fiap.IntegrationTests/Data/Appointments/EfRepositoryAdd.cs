@@ -1,7 +1,7 @@
-﻿using Hackathon.Fiap.Core.Aggregates.Doctors;
-using Hackathon.Fiap.Core.Aggregates.Appointments;
-using Hackathon.Fiap.IntegrationTests.Fakers;
+﻿using Hackathon.Fiap.Core.Aggregates.Appointments;
+using Hackathon.Fiap.Core.Aggregates.Doctors;
 using Hackathon.Fiap.Core.Aggregates.Patients;
+using Hackathon.Fiap.IntegrationTests.Fakers;
 
 namespace Hackathon.Fiap.IntegrationTests.Data.Appointments;
 
@@ -29,7 +29,7 @@ public class EfRepositoryAdd : BaseEfRepoTestFixture
         var repository = GetRepository<Appointment>();
 
         await repository.AddAsync(appointment);
-        
+
         Assert.Equal(appointment.Start, start);
         Assert.Equal(appointment.End, end);
         Assert.True(appointment.Id > 0);
