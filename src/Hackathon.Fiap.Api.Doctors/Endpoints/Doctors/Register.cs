@@ -23,7 +23,7 @@ public partial class Register(IMediator mediator) : Endpoint<RegisterDoctorReque
             x.Response(StatusCodes.Status409Conflict, "Doctor already registered");
             x.ExampleRequest = new RegisterDoctorRequest
             (
-                "Dr. John Doe",
+                "John Doe",
                 "12345678909",
                 "123456-RS",
                 "doctor@email.com",

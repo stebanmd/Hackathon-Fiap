@@ -2,7 +2,6 @@
 using Hackathon.Fiap.Core.Abstractions;
 using Hackathon.Fiap.Core.Aggregates.Doctors;
 using Hackathon.Fiap.Core.Aggregates.Doctors.Specifications;
-using Hackathon.Fiap.UseCases;
 using Microsoft.AspNetCore.Authorization;
 
 namespace Hackathon.Fiap.Infrastructure.Authorization;
@@ -28,16 +27,7 @@ public class DoctorMustBeDataOwnerHandler : AuthorizationHandler<DoctorMustBeDat
             return;
         }
 
-        var role = context.User.Claims.Where(c => c.Type == ClaimTypes.Role).Select(x => x.Value);
-        if (role.Contains(ApplicationRoles.Admin))
-        {
-            _logger.LogInformation("Access granted to Admin user.");
-            context.Succeed(requirement);
-            return;
-        }
-
         var userId = context.User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
-
         if (userId is null)
         {
             _logger.LogError("UserID not found on user claims.");

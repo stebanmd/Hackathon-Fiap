@@ -1,5 +1,4 @@
 ﻿using Hackathon.Fiap.Infrastructure.Authorization;
-using Hackathon.Fiap.UseCases;
 using Hackathon.Fiap.UseCases.Doctors.AppointmentConfiguration;
 using Microsoft.AspNetCore.Authorization;
 
@@ -16,7 +15,7 @@ public partial class AppointmentConfiguration(IMediator mediator, IAuthorization
     public override void Configure()
     {
         Put(RegisterAppointmentConfigurationRequest.Route);
-        Roles(ApplicationRoles.Doctor, ApplicationRoles.Admin);
+        Roles(ApplicationRoles.Doctor);
         Summary(x =>
         {
             x.Response(StatusCodes.Status200OK, "Doctor appointment configuration registered successfully");

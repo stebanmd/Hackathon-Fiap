@@ -1,7 +1,5 @@
 ﻿using Ardalis.ListStartupServices;
 using Hackathon.Fiap.Infrastructure.Data;
-using Hackathon.Fiap.UseCases;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace Hackathon.Fiap.Api.Doctors.Configurations;
@@ -14,7 +12,7 @@ public static class MiddlewareConfig
         {
             app.UseDeveloperExceptionPage();
             app.UseShowAllServicesMiddleware(); // see https://github.com/ardalis/AspNetCoreStartupServices
-            await ApplyMigrationsAndSeedDatabase(app);
+            await ApplyMigrations(app);
         }
         else
         {
@@ -22,7 +20,6 @@ public static class MiddlewareConfig
             app.UseHsts();
         }
 
-        await SeedIdentityData(app);
         app
             .UseFastEndpoints()
             .UseSwaggerGen(); // Includes AddFileServer and static files middleware
@@ -31,7 +28,7 @@ public static class MiddlewareConfig
         return app;
     }
 
-    static async Task ApplyMigrationsAndSeedDatabase(WebApplication app)
+    static async Task ApplyMigrations(WebApplication app)
     {
         using var scope = app.Services.CreateScope();
         var services = scope.ServiceProvider;
@@ -39,28 +36,12 @@ public static class MiddlewareConfig
         try
         {
             var context = services.GetRequiredService<AppDbContext>();
-
             await context.Database.MigrateAsync();
-            await SeedData.InitializeAsync(context);
         }
         catch (Exception ex)
         {
             var logger = services.GetRequiredService<ILogger<Program>>();
             logger.LogError(ex, "An error occurred seeding the DB. {ExceptionMessage}", ex.Message);
-        }
-    }
-
-    static async Task SeedIdentityData(WebApplication app)
-    {
-        using var scope = app.Services.CreateScope();
-        var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
-
-        var roleExist = await roleManager.RoleExistsAsync(ApplicationRoles.Admin);
-        if (!roleExist)
-        {
-            await roleManager.CreateAsync(new IdentityRole(ApplicationRoles.Admin));
-            await roleManager.CreateAsync(new IdentityRole(ApplicationRoles.Doctor));
-            await roleManager.CreateAsync(new IdentityRole(ApplicationRoles.Patient));
         }
     }
 }

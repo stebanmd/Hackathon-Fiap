@@ -1,5 +1,4 @@
-﻿using Hackathon.Fiap.UseCases;
-using Hackathon.Fiap.UseCases.Doctors.GetByUserId;
+﻿using Hackathon.Fiap.UseCases.Doctors.GetByUserId;
 using Hackathon.Fiap.UseCases.Schedules.Update;
 
 namespace Hackathon.Fiap.Api.Doctors.Endpoints.Schedules;
