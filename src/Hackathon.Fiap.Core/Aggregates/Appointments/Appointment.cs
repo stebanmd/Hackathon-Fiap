@@ -29,16 +29,17 @@ public class Appointment(DateTime start, DateTime end) : EntityBase, IAggregateR
         PatientId = patient.Id;
     }
 
-    public void Cancel(string reason)
+    public void Cancel(string? reason)
     {
         Status = AppointmentStatus.Canceled;
         Reason = reason;
         RegisterDomainEvent(new CancelAppointmentEvent(this));
     }
 
-    public void Confirm()
+    public void Reply(AppointmentStatus status, string? reason)
     {
-        Status = AppointmentStatus.Confirmed;
-        //RegisterDomainEvent(new ConfirmAppointmentEvent(this));
+        Status = status;
+        Reason = reason;
+        RegisterDomainEvent(new ReplyAppointmentEvent(this));
     }
 }
