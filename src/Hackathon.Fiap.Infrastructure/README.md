@@ -6,6 +6,6 @@ The only project that should have code concerned with EF, Files, Email, Web Serv
 
 Infrastructure should depend on Core (and, optionally, Use Cases) where abstractions (interfaces) exist.
 
-Infrastructure classes implement interfaces found in the Core (Use Cases) project(s).
+## High-Level
 
-These implementations are wired up at startup using DI. In this case using `Microsoft.Extensions.DependencyInjection` and extension methods defined in each project.
+![high-level](../../.github/infra-project.png)
