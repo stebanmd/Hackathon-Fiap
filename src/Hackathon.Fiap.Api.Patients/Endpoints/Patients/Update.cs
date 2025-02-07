@@ -1,6 +1,5 @@
 ﻿using Ardalis.Result.AspNetCore;
 using Hackathon.Fiap.Infrastructure.Authorization;
-using Hackathon.Fiap.UseCases;
 using Hackathon.Fiap.UseCases.Patients.Update;
 using Microsoft.AspNetCore.Authorization;
 
@@ -14,7 +13,7 @@ public class Update(IMediator mediator, IAuthorizationService authService) : End
     public override void Configure()
     {
         Put(UpdatePatientRequest.Route);
-        Roles(ApplicationRoles.Patient, ApplicationRoles.Admin);
+        Roles(ApplicationRoles.Patient);
         Summary(x =>
         {
             x.Response(StatusCodes.Status200OK, "Patient updated successfully.");

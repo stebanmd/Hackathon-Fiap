@@ -1,5 +1,4 @@
-﻿using Hackathon.Fiap.UseCases;
-using Hackathon.Fiap.UseCases.Doctors.Specialties;
+﻿using Hackathon.Fiap.UseCases.Doctors.Specialties;
 
 namespace Hackathon.Fiap.Api.Patients.Endpoints.Doctors;
 
@@ -13,7 +12,7 @@ public partial class Specialties(IMediator mediator) : EndpointWithoutRequest<IE
     public override void Configure()
     {
         Get("doctors/specialties");
-        Roles(ApplicationRoles.Patient, ApplicationRoles.Admin);
+        Roles(ApplicationRoles.Patient);
     }
 
     public override async Task HandleAsync(CancellationToken ct)

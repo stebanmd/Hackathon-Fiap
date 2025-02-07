@@ -2,7 +2,6 @@
 using Hackathon.Fiap.Core.Abstractions;
 using Hackathon.Fiap.Core.Aggregates.Patients;
 using Hackathon.Fiap.Core.Aggregates.Patients.Specifications;
-using Hackathon.Fiap.UseCases;
 using Microsoft.AspNetCore.Authorization;
 
 namespace Hackathon.Fiap.Infrastructure.Authorization;
@@ -25,14 +24,6 @@ public class PatientMustBeDataOwnerHandler : AuthorizationHandler<PatientMustBeD
         if (context.User is null)
         {
             context.Fail();
-            return;
-        }
-
-        var role = context.User.Claims.Where(c => c.Type == ClaimTypes.Role).Select(x => x.Value);
-        if (role.Contains(ApplicationRoles.Admin))
-        {
-            _logger.LogInformation("Access granted to Admin user.");
-            context.Succeed(requirement);
             return;
         }
 

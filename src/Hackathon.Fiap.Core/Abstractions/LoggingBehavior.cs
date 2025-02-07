@@ -3,24 +3,6 @@ using System.Reflection;
 
 namespace Hackathon.Fiap.Core.Abstractions;
 
-/// <summary>
-/// Adds logging for all requests in MediatR pipeline.
-/// Configure by adding the service with a scoped lifetime
-/// 
-/// Example for Autofac:
-/// builder
-///   .RegisterType&lt;Mediator&gt;()
-///   .As&lt;IMediator&gt;()
-///   .InstancePerLifetimeScope();
-///
-/// builder
-///   .RegisterGeneric(typeof(LoggingBehavior&lt;,&gt;))
-///      .As(typeof(IPipelineBehavior&lt;,&gt;))
-///   .InstancePerLifetimeScope();
-///
-/// </summary>
-/// <typeparam name="TRequest"></typeparam>
-/// <typeparam name="TResponse"></typeparam>
 public class LoggingBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
     where TRequest : IRequest<TResponse>
 {
@@ -33,7 +15,6 @@ public class LoggingBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, 
 
     public async Task<TResponse> Handle(TRequest request, RequestHandlerDelegate<TResponse> next, CancellationToken cancellationToken)
     {
-        Guard.Against.Null(request);
         if (_logger.IsEnabled(LogLevel.Information))
         {
             _logger.LogInformation("Handling {RequestName}", typeof(TRequest).Name);

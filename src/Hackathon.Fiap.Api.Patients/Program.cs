@@ -29,7 +29,7 @@ builder.AddServiceDefaults();
 
 var app = builder.Build();
 
-await app.UseAppMiddlewareAndSeedDatabase();
+app.UseAppMiddleware();
 
 app.ConfigureAuthentication()
    .MapDefaultEndpoints();
@@ -37,5 +37,8 @@ app.ConfigureAuthentication()
 
 await app.RunAsync();
 
-// Make the implicit Program.cs class public, so integration tests can reference the correct assembly for host building
-public partial class Program { }
+namespace Hackathon.Fiap.Api.Patients
+{
+    // Make the implicit Program.cs class public, so integration tests can reference the correct assembly for host building
+    public partial class Program { }
+}

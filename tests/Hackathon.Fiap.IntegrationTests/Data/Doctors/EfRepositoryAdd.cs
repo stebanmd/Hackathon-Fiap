@@ -13,6 +13,7 @@ public class EfRepositoryAdd : BaseEfRepoTestFixture
 
         var doctor = new Doctor(doctorFaker.Name, doctorFaker.Cpf, doctorFaker.Crm);
         doctor.SetUser(doctorFaker.User);
+
         foreach (var schedule in doctorFaker.Schedules)
         {
             doctor.AddSchedule(schedule);

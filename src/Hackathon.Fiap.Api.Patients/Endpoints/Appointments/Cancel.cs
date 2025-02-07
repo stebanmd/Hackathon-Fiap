@@ -1,6 +1,5 @@
 ﻿using Ardalis.Result.AspNetCore;
 using Hackathon.Fiap.Api.Patients.Commons.Extensions;
-using Hackathon.Fiap.UseCases;
 using Hackathon.Fiap.UseCases.Appointments.Cancel;
 using Hackathon.Fiap.UseCases.Patients.GetByUserId;
 
